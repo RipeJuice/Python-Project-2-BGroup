@@ -19,10 +19,32 @@ game_setup.py - creates the game board and all pre-game setup
 import game_setup
 import controller
 import view
+import pygame
 
 # 10 for Easy, Medium, Hard (4x4) - 30 total
 # 10 for Easy, Medium, Hard (9x9) - 30 total
 #                                   60 total
+
+running = True
+    while running:
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                running = False
+            # Handle other events like key presses here later
+
+        # Drawing the screen
+        draw_grid()
+        draw_numbers(current_board)
+
+        # Update the display
+        pygame.display.update()
+
+    pygame.quit()
+    sys.exit()
+
+# Run the main function
+if __name__ == "__main__":
+    main()
 
 
 
