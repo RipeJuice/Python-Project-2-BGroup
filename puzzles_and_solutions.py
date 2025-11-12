@@ -1,5 +1,10 @@
 #Contains the empty puzzles and the corresponding solutions
 
+
+# I love bananas
+
+
+
 #4x4 puzzles
 puzzles_4x4 = {
     "easy_size4_1" : "4--12--31-3----",
