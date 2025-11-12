@@ -39,6 +39,19 @@ puzzles_4x4 = {
     "hard_size4_10" : "-----31--14-4---",
 }
 
+puzzles_9x9 = {
+    easy_size9_1" : "4--12--31-3----",
+    "easy_size9_2" : "4--323-432----3-",
+    "easy_size9_3" : "-4311-4-3-------",
+    "easy_size9_4" : "3-2-12--2---4---",
+    "easy_size9_5" : "-24---3-2--44--3",
+    "easy_size9_6" : "4--323-432----3-",
+    "easy_size9_7" : "3---4--223411---",
+    "easy_size9_8" : "-1--24-1-3--42-3",
+    "easy_size9_9" : "--4-41--3---14--",
+    "easy_size9_10" : "-431-----3--124-",
+}
+
 #Function to print the selected puzzle
 def grab_puzzle(diff, size, num):
     puzzle = puzzles_4x4.get(f"{diff}_size{size}_{num}")
