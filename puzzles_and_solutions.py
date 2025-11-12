@@ -39,3 +39,9 @@ def grab_puzzle(diff, size, num):
     puzzle = puzzles_4x4.get(f"{diff}_size{size}_{num}")
     print(puzzle)
 grab_puzzle("easy", "4", "1")
+
+
+
+
+
+
