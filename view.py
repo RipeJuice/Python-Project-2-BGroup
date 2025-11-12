@@ -22,30 +22,6 @@ import sys
 from pygame import display, font, event
 from pygame.locals import *
 
-"""
-import turtle
-
-grid_size = 500
-cell_size = grid_size/9
-thin_line = 1
-thick_line = 3
-
-screen = turtle._Screen()
-screen.setup(width=grid_size + 50, height=gridsize + 50)
-screen.title("Sudoku")
-screen.listen()
-
-pen = turtle.Turtle()
-pen.speed(0)
-pen.hideturtle()
-
-def draw_grid(size):
-    start_x = grid_size/2
-    start_y = grid_size/2
-    pen.goto(start_x, start_y)
-    pen.pendown()
-"""
-
 
 # Initializes Pygame
 pygame.init()
@@ -62,7 +38,7 @@ GRAY = (100, 100, 100)
 
 # Display Setup
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Sodoku")
+pygame.display.set_caption("Sudoku")
 
 # Fonts
 font = pygame.font.SysFont("Impact", 40)
