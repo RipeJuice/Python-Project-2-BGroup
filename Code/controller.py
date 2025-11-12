@@ -23,7 +23,7 @@ class SudokuInputController:
                 print("Please enter exactly one letter")
                 continue
 
-
+"""
 if not col_input.isalpha():
     print("Please enter a valid letter (A-Z)")
     continue
@@ -34,5 +34,6 @@ if 0 <= col_index < max_columns:
     return col_index
 else:
     print(f"Column must be between A and {self.get_column_letter(max_columns - 1)}")
+"""
 
 
