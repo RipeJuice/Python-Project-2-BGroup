@@ -1,39 +1,55 @@
 # CONTROLLER
 
+# Still working on this. I'll get to it later. --Malachi
+
+import pygame
+import sys
 
 
 
-# Processes user actions and connects model and view
-class SudokuInputController:
-    def __init__(self, game_mode):
-        self.game_mode = game_mode
-        self.selected_cell = None
-        
-    def get_column_letter(self, col_index):
-        return chr(ord('A') + col_index)
-    
-    def get_column_input(self):
-        max_columns = 4 if self.game_mode == "4x4" else 9
-        
-        while True:
-            print(f"\nEnter column letter (A-{self.get_column_letter(max_columns-1)}): ")
-            col_input = input().strip().upper()
-            
-            if len(col_input) != 1:
-                print("Please enter exactly one letter")
-                continue
+class SudokuController:
+    def __init__(self, model, view):
+        self.model = model
+        self.view = view
+        self.running = True
 
-"""
-if not col_input.isalpha():
-    print("Please enter a valid letter (A-Z)")
-    continue
+    def run_game_loop(self):
+        # The main loop moves from model.py to the controller
+        while self.running:
+            # Clock handling, dynamic colors logic (from model.py main) can go here
+            # ...
 
-col_index = ord(col_input) - ord('A')
+            self.handle_events()
+            self.update_view()
+            # ... (pygame.display.update() and delay/clock.tick() might move here)
 
-if 0 <= col_index < max_columns:
-    return col_index
-else:
-    print(f"Column must be between A and {self.get_column_letter(max_columns - 1)}")
-"""
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Need a utility function here or pass screen info
+                # row, col = self.get_row_col_from_mouse(event.pos)
+                # self.view.set_selection(row, col) # Or call model to update selection
+
+                # For now, let's keep it simple:
+                print(f"Click detected in controller at {event.pos}")
+
+            if event.type == pygame.KEYDOWN:
+                # Pass keyboard input to the model or view to process
+                pass  # self.model.handle_key(event.key)
+
+    # Need a function to translate mouse position (can be global utility or in view)
+    def get_row_col_from_mouse(self, pos, size, width):
+        x, y = pos
+        cell_size = width // size
+        row = y // cell_size
+        col = x // cell_size
+        return row, col
+
+    def update_view(self):
+        # This is where we tell the view to draw the current state
+        pass  # self.view.update_display(self.model.current_board_string)
 
 
