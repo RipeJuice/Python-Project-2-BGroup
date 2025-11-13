@@ -101,13 +101,12 @@ class GameView:
             for j in range(self.board_size):  # j is the column index
 
                 # Calculate the 1D index from the 2D (row, col) coordinates
-                # This is the core change:
                 index = i * self.board_size + j
 
-                # Get the character/number from the string at that specific index
+                # Get the number from the string at that specific index
                 num_char = board[index]
 
-                # Only draw if the cell is not empty (assuming '0' means empty)
+                # Only draw if the cell is not empty
                 if num_char != '-':
                     text_surface = font.render(str(num_char), True, text_color)
                     # Center the number within the cell
