@@ -41,11 +41,27 @@ import colorsys
 # 10 for Easy, Medium, Hard (4x4) - 30 total
 # 10 for Easy, Medium, Hard (9x9) - 30 total
 #                                   60 total
+
+def get_row_col_from_mouse(pos, size, width):
+    # Translates coordinates into rows and columns
+    x, y = pos
+    cell_size = width // size
+    row = y // cell_size
+    col = x // cell_size
+    return row, col
+
+
+
+
 def main():
     current_board = puzzles_and_solutions.grab_puzzle("easy", "4", "3")
     print(current_board)
 
     game_view_instance = GameView(BOARD_SIZE)
+
+    from view import WIDTH
+
+    selected_cell = None # Defines variable for later (mouse clicks)
 
     clock = pygame.time.Clock()
     hue = 0
@@ -56,8 +72,23 @@ def main():
         clock.tick(60)
 
         for ev in pygame.event.get():
-            if ev.type == pygame.QUIT:
+            # EXIT GAME
+            if ev.type == pygame.QUIT: # If they exit pygame
                 running = False
+
+            # MOUSE CLICK
+            if ev.type == pygame.MOUSEBUTTONDOWN: # Mouse clicks
+                row, col = get_row_col_from_mouse(ev.pos, BOARD_SIZE, WIDTH) # Gets coordinates of cell clicked
+                selected_cell = (row, col) # Defines that
+                print(f"Selected cell: {row}, {col}") # Testing
+
+            # TYPING
+            if ev.type == pygame.KEYDOWN:
+                if selected_cell:
+                    if ev.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
+                        print(f"Entered number: {ev.unicode}") # For now, later we will input that into game
+                    elif ev.key == pygame.K_BACKSPACE:
+                        print("Cleared cell.") # For now.
             # Handle other events like key presses here later
 
         hue = (hue + 0.0005) % 1.0

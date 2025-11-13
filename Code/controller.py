@@ -33,7 +33,6 @@ class SudokuController:
                 # row, col = self.get_row_col_from_mouse(event.pos)
                 # self.view.set_selection(row, col) # Or call model to update selection
 
-                # For now, let's keep it simple:
                 print(f"Click detected in controller at {event.pos}")
 
             if event.type == pygame.KEYDOWN:
