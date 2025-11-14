@@ -3,4 +3,4 @@
 # ...use "from {file name} import {variable}
 # ...ex. "from config import BOARD_SIZE"
 
-BOARD_SIZE = 4
+BOARD_SIZE = 9

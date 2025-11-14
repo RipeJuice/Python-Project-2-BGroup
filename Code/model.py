@@ -54,7 +54,8 @@ def get_row_col_from_mouse(pos, size, width):
 
 
 def main():
-    current_board = puzzles_and_solutions.grab_puzzle("easy", "4", "3")
+
+    current_board = puzzles_and_solutions.grab_puzzle("easy", "9", "2")
     print(current_board)
 
     game_view_instance = GameView(BOARD_SIZE)
@@ -95,15 +96,21 @@ def main():
 
         hue = (hue + 0.0005) % 1.0
 
+        note_mode = False
+        if note_mode:
+            glow_color = (255, 165, 0)
+        else:
+            glow_color = (0, 0, 139)
+
+
         rgb_tuple = colorsys.hls_to_rgb(hue, 0.125, 1)
         # Scale for Pygame
         dynamic_color = (int(rgb_tuple[0] * 255), int(rgb_tuple[1] * 255), int(rgb_tuple[2] * 255))
-        rgb_glow_tuple = colorsys.hsv_to_rgb(hue, 1, 1)
-        dynamic_glow_color =  (int(rgb_glow_tuple[0] * 255), int(rgb_glow_tuple[1] * 255), int(rgb_glow_tuple[2] * 255))
+
         # Drawing the screen
         game_view_instance.draw_grid(dynamic_color)
 
-        game_view_instance.draw_selection(selected_cell, current_time_ms, dynamic_glow_color)
+        game_view_instance.draw_selection(selected_cell, current_time_ms, glow_color)
 
         game_view_instance.draw_numbers(current_board, dynamic_color)
 

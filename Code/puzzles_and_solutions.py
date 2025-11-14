@@ -77,7 +77,7 @@ puzzles = {
 #Function to print the selected puzzle
 def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{size}_{num}")
-    print(puzzle)
+    return puzzle
 grab_puzzle("easy", "4", "1")
 
 
