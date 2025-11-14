@@ -1,4 +1,4 @@
-#Contains the empty puzzles and the corresponding solutions
+#Contains the empty puzzles
 
 #4x4 puzzles
 puzzles = {
@@ -78,7 +78,6 @@ puzzles = {
 def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{size}_{num}")
     return puzzle
-grab_puzzle("easy", "4", "1")
 
 
 
