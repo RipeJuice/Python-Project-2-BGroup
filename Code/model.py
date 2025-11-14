@@ -33,7 +33,7 @@ from Code import view
 from view import GameView
 from Code import puzzles_and_solutions
 from config import BOARD_SIZE
-from controller import SudokuController
+from controller import SudokuInputController
 import pygame
 import sys
 import colorsys
@@ -91,14 +91,20 @@ def main():
                         print("Cleared cell.") # For now.
             # Handle other events like key presses here later
 
+        current_time_ms = pygame.time.get_ticks()
+
         hue = (hue + 0.0005) % 1.0
 
         rgb_tuple = colorsys.hls_to_rgb(hue, 0.125, 1)
         # Scale for Pygame
         dynamic_color = (int(rgb_tuple[0] * 255), int(rgb_tuple[1] * 255), int(rgb_tuple[2] * 255))
-
+        rgb_glow_tuple = colorsys.hsv_to_rgb(hue, 1, 1)
+        dynamic_glow_color =  (int(rgb_glow_tuple[0] * 255), int(rgb_glow_tuple[1] * 255), int(rgb_glow_tuple[2] * 255))
         # Drawing the screen
         game_view_instance.draw_grid(dynamic_color)
+
+        game_view_instance.draw_selection(selected_cell, current_time_ms, dynamic_glow_color)
+
         game_view_instance.draw_numbers(current_board, dynamic_color)
 
         # Update the display
