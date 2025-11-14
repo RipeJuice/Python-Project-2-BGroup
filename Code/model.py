@@ -37,6 +37,7 @@ from controller import SudokuInputController
 import pygame
 import sys
 import colorsys
+import random
 
 # 10 for Easy, Medium, Hard (4x4) - 30 total
 # 10 for Easy, Medium, Hard (9x9) - 30 total
@@ -54,8 +55,9 @@ def get_row_col_from_mouse(pos, size, width):
 
 
 def main():
-
-    current_board = puzzles_and_solutions.grab_puzzle("easy", "9", "2")
+    BOARD_SIZE = random.choice([4, 9])
+    random_diff = random.choice(["easy", "medium", "hard"])
+    current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random.randint(1, 10)}")
     print(current_board)
 
     game_view_instance = GameView(BOARD_SIZE)
