@@ -1,13 +1,8 @@
 #Contains the empty puzzles and the corresponding solutions
 
-
-# I love bananas
-
-
-
 #4x4 puzzles
 puzzles = {
-    "easy_size4_1" : "4--12--31-3----",
+    "easy_size4_1" : "4--12--31-3-----",
     "easy_size4_2" : "4--323-432----3-",
     "easy_size4_3" : "-4311-4-3-------",
     "easy_size4_4" : "3-2-12--2---4---",
