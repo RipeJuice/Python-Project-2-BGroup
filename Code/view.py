@@ -1,14 +1,14 @@
-# VIEW
-# Only recieves simple input and is concerned about displaying what the user sees
+#VIEW
+# Only receives simple input and displays visuals
 
 
-# ALLOWS VNC DISPLAY
+#ALLOWS VNC DISPLAY
 import os
 import tempfile
 
-# Check if XDG_RUNTIME_DIR is set
+#Check if XDG_RUNTIME_DIR is set
 if 'XDG_RUNTIME_DIR' not in os.environ:
-    # Create a temporary directory in /tmp for the runtime
+    #Create a temporary directory in /tmp for the runtime
     temp_dir = tempfile.mkdtemp(prefix='runtime-', dir='/tmp')
     os.environ['XDG_RUNTIME_DIR'] = temp_dir
     print(f"Set XDG_RUNTIME_DIR to: {temp_dir}")
@@ -16,7 +16,7 @@ else:
     print(f"XDG_RUNTIME_DIR already set to: {os.environ['XDG_RUNTIME_DIR']}")
 
 
-# Imports
+#Imports
 import pygame
 import sys
 from pygame import display, font, event
