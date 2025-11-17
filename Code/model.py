@@ -30,7 +30,7 @@ puzzles_and_solutions.py - contains puzzles and solutions
 from Code import controller
 from Code import game_setup
 from Code import view
-from view import GameView
+from view import GameView, BOARD_SIZE
 from Code import puzzles_and_solutions
 from config import BOARD_SIZE
 from controller import SudokuInputController
@@ -54,10 +54,12 @@ def get_row_col_from_mouse(pos, size, width):
 
 
 
+
 def main():
-    BOARD_SIZE = random.choice([4, 9])
     random_diff = random.choice(["easy", "medium", "hard"])
     current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random.randint(1, 10)}")
+    print(random_diff)
+    print(BOARD_SIZE)
     print(current_board)
 
     game_view_instance = GameView(BOARD_SIZE)
