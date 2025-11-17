@@ -58,7 +58,7 @@ BLACK = (0, 0, 0)
 GRAY = (100, 100, 100)
 LIGHT_GRAY = (200, 200, 200)
 PRESSED_GRAY = (210, 210, 210)
-BOARD_SIZE = random.choice([4, 9])
+
 
 # Display Setup
 
