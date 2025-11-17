@@ -56,14 +56,17 @@ def get_row_col_from_mouse(pos, size, width):
 
 
 def main():
-    random_diff = random.choice(["easy", "medium", "hard"])
-    current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random.randint(1, 10)}")
-    print(random_diff)
-    print(BOARD_SIZE)
+    # --- ADDED: Start Menu Logic ---
+    # Call the main menu function from game_setup.py
+    # The loop below will only start once main_menu() returns "start_game"
+    game_setup.main_menu()
+    # --------------------------------
+
+    current_board = puzzles_and_solutions.grab_puzzle("easy", "9", "2")
     print(current_board)
 
     game_view_instance = GameView(BOARD_SIZE)
-
+    # ... the rest of your main function remains the same ...
     from view import WIDTH
 
     selected_cell = None # Defines variable for later (mouse clicks)
@@ -73,7 +76,7 @@ def main():
 
     running = True
     while running:
-
+        # ... (rest of the while loop code you already had) ...
         clock.tick(60)
 
         for ev in pygame.event.get():
