@@ -32,6 +32,9 @@ from Code import game_setup
 from Code import view
 from view import GameView, BOARD_SIZE
 from Code import puzzles_and_solutions
+from Code import music
+from music import load_music
+from music import loop_music
 from config import BOARD_SIZE
 from controller import SudokuInputController
 import pygame
@@ -101,6 +104,11 @@ def main():
 
     clock = pygame.time.Clock()
     hue = 0
+
+    # Loading the music
+    music.load_music("/Users/geschantz/PycharmProjects/Python-Project-2-BGroup/Code/background_music_1.mp3")
+    # playing the music
+    music.loop_music()
 
     running = True
     while running:
