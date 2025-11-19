@@ -8,6 +8,7 @@ from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, LIGHT_GRAY, PRESSED_
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 
 
+
 def draw_text(text, font_used, color, surface, x, y):
     """Helper function to draw text on the screen."""
     textobj = font_used.render(text, True, color)
@@ -28,7 +29,7 @@ def main_menu():
         # Draw buttons
         pygame.draw.rect(screen, LIGHT_GRAY, play_button)
         pygame.draw.rect(screen, LIGHT_GRAY, exit_button)
-        draw_text('PLAY (Easy 9x9)', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 25)
+        draw_text('PLAY', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 25)
         draw_text('EXIT', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 95)
 
         for event in pygame.event.get():
@@ -43,5 +44,6 @@ def main_menu():
                 if exit_button.collidepoint(event.pos):
                     pygame.quit()
                     sys.exit()
+
 
         pygame.display.update()
