@@ -78,9 +78,3 @@ puzzles = {
 def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{size}_{num}")
     return puzzle
-
-
-
-
-
-
