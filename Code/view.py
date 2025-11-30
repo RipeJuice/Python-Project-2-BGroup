@@ -77,6 +77,9 @@ class GameView:
         self.board_size = size
         # Maybe configure globals here or store relevant objects
         import view as v  # Access globals from view if needed
+        global font_size
+        self.note_font_size = int(font_size * 0.4)
+        self.note_font = pygame.font.SysFont("Impact", self.note_font_size)
 
 
     def draw_grid(self, grid_color):
@@ -94,6 +97,7 @@ class GameView:
 
 
     def draw_numbers(self, board, text_color):
+        """
         # Ensure the string is the correct length before proceeding
         expected_length = self.board_size * self.board_size
         if len(board) != expected_length:
@@ -117,6 +121,40 @@ class GameView:
                     text_rect = text_surface.get_rect(
                         center=(j * CELL_SIZE + CELL_SIZE // 2, i * CELL_SIZE + CELL_SIZE // 2))
                     screen.blit(text_surface, text_rect)
+        """
+        for i in range(self.board_size):  # i is the row index
+            for j in range(self.board_size):  # j is the column index
+
+                cell_data = board[i][j]
+                cell_value = cell_data["value"]
+                cell_notes = cell_data["notes"]
+
+                # 1. Draw Main Value
+                if cell_value != 0:
+                    text_surface = font.render(str(cell_value), True, text_color)
+                    text_rect = text_surface.get_rect(
+                        center=(j * CELL_SIZE + CELL_SIZE // 2, i * CELL_SIZE + CELL_SIZE // 2))
+                    screen.blit(text_surface, text_rect)
+
+                # 2. Draw Notes if cell is empty
+                elif cell_notes:
+                    # Positions mimic a 3x3 layout within the cell
+                    note_positions = {
+                        1: (0.2, 0.8), 2: (0.5, 0.8), 3: (0.8, 0.8),
+                        4: (0.2, 0.5), 5: (0.5, 0.5), 6: (0.8, 0.5),
+                        7: (0.2, 0.2), 8: (0.5, 0.2), 9: (0.8, 0.2),
+                    }
+
+                    for note_value in cell_notes:
+                        if note_value in note_positions:
+                            pos_ratio_x, pos_ratio_y = note_positions[note_value]
+
+                            note_x = j * CELL_SIZE + (CELL_SIZE * pos_ratio_x)
+                            note_y = i * CELL_SIZE + (CELL_SIZE * pos_ratio_y)
+
+                            note_surface = self.note_font.render(str(note_value), True, GRAY)  # Gray color for notes
+                            note_rect = note_surface.get_rect(center=(note_x, note_y))
+                            screen.blit(note_surface, note_rect)
 
     # Highlights cell for "pressed down" look
     def draw_selection(self, selected_cell, current_time_ms, line_color):
@@ -149,3 +187,4 @@ class GameView:
 
         # Blit the effect onto the main screen
         screen.blit(s, (col * CELL_SIZE, row * CELL_SIZE))
+

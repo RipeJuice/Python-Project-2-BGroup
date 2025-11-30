@@ -46,6 +46,25 @@ import random
 # 10 for Easy, Medium, Hard (9x9) - 30 total
 #                                   60 total
 
+def initialize_game_grid(puzzle_string, size):
+    grid = []
+    for i in range(size):
+        row = [] # Rows inside grid
+        for j in range(size):
+            char = puzzle_string[i * size + j] # Sets char to the original cell value
+            value = int(char) if char != '-' else 0 # Makes sure it isn't empty and turns the char into integer
+
+            cell_data = {
+                "value": value,
+                "notes": set(),
+                "is_original": value != 0
+            } # Adds data to cell
+            row.append(cell_data) # Adds cell to list
+        grid.append(row) # Adds entire row to grid
+    return grid
+
+
+
 def get_row_col_from_mouse(pos, size, width):
     # Translates coordinates into rows and columns
     x, y = pos
@@ -70,11 +89,18 @@ def main():
     print(BOARD_SIZE)
     print(current_board)
 
+    current_board = initialize_game_grid(current_board, BOARD_SIZE)
+
     game_view_instance = GameView(BOARD_SIZE)
+
+
+    selected_cell = None # Before game defaults
+    note_mode = False # Before game defaults
+
+
     # ... the rest of your main function remains the same ...
     from view import WIDTH
 
-    selected_cell = None # Defines variable for later (mouse clicks)
 
     clock = pygame.time.Clock()
     hue = 0
@@ -102,18 +128,42 @@ def main():
 
             # TYPING
             if ev.type == pygame.KEYDOWN:
-                if selected_cell:
-                    if ev.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
-                        print(f"Entered number: {ev.unicode}") # For now, later we will input that into game
-                    elif ev.key == pygame.K_BACKSPACE:
-                        print("Cleared cell.") # For now.
-            # Handle other events like key presses here later
+                if ev.key == pygame.K_n:
+                    note_mode = not note_mode
+                    print(f"Note mode is now {'ON' if note_mode else 'OFF'}")
+
+                    if selected_cell:
+                        row, col = selected_cell
+                        # Make sure the user can only modify empty cells
+                        if not current_board[row][col]["is_original"]:
+                            # Check for valid number
+                            if ev.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
+                                try:
+                                    number_pressed = int(ev.unicode)
+
+                                    if note_mode:
+                                        # Handles notes
+                                        notes_set = current_board[row][col]["notes"]
+                                        if number_pressed in notes_set:
+                                            notes_set.remove(number_pressed)
+                                        else:
+                                            notes_set.add(number_pressed)
+                                        current_board[row][col]["value"] = 0 # Make sure cell is empty
+                                    else:
+                                        # Handle main value input
+                                        current_board[row][col]["value"] = number_pressed
+                                        current_board[row][col]["notes"] = set() # Clears notes
+                                except ValueError:
+                                    pass # If user didn't press a valid key
+
+
+                            elif ev.key == pygame.K_BACKSPACE: # COME BACK HERE <----
+                                print("Cleared cell.") # For now.
 
         current_time_ms = pygame.time.get_ticks()
 
         hue = (hue + 0.0005) % 1.0
 
-        note_mode = False
         if note_mode:
             glow_color = (255, 165, 0)
         else:
