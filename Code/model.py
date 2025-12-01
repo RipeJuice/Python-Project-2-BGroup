@@ -106,7 +106,7 @@ def main():
     hue = 0
 
     # Loading the music
-    music.load_music("/Users/geschantz/PycharmProjects/Python-Project-2-BGroup/Code/background_music_1.mp3")
+    music.load_music("../Code/background_music_1.mp3")
     # playing the music
     music.loop_music()
 
