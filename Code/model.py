@@ -106,9 +106,9 @@ def main():
     hue = 0
 
     # Loading the music
-    music.load_music("/Users/geschantz/PycharmProjects/Python-Project-2-BGroup/Code/background_music_1.mp3")
+    #music.load_music("/Users/geschantz/PycharmProjects/Python-Project-2-BGroup/Code/background_music_1.mp3")
     # playing the music
-    music.loop_music()
+    #music.loop_music()
 
     running = True
     while running:
@@ -157,8 +157,11 @@ def main():
                                     pass # If user didn't press a valid key
 
 
-                            elif ev.key == pygame.K_BACKSPACE: # COME BACK HERE <----
-                                print("Cleared cell.") # For now.
+
+                            elif ev.key in [pygame.K_BACKSPACE, pygame.K_DELETE]:
+                                print("Cleared cell.")
+                                current_board[row][col]["value"] = 0
+                                current_board[row][col]["notes"].clear()
 
         current_time_ms = pygame.time.get_ticks()
 
