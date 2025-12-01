@@ -1,5 +1,5 @@
 # MODEL (imagine main)
-# Only cares about tasks; doesn't ask for input
+# Model only focuses on tasks; doesn't take input
 
 # HELLO. THIS IS THE MAIN FILE. See below for file functions.
 # Right now, our goals are to create an environment where
