@@ -106,7 +106,7 @@ def main():
     hue = 0
 
     # Loading the music
-    music.load_music("/Users/geschantz/PycharmProjects/Python-Project-2-BGroup/Code/background_music_1.mp3")
+    music.load_music("../Code/background_music_1.mp3")
     # playing the music
     music.loop_music()
 
@@ -132,33 +132,34 @@ def main():
                     note_mode = not note_mode
                     print(f"Note mode is now {'ON' if note_mode else 'OFF'}")
 
-                    if selected_cell:
-                        row, col = selected_cell
-                        # Make sure the user can only modify empty cells
-                        if not current_board[row][col]["is_original"]:
-                            # Check for valid number
-                            if ev.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
-                                try:
-                                    number_pressed = int(ev.unicode)
+                if selected_cell:
+                    row, col = selected_cell
+                    # Make sure the user can only modify empty cells
+                    if not current_board[row][col]["is_original"]:
+                        # Check for valid number
+                        if ev.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]:
+                            try:
+                                number_pressed = int(ev.unicode)
 
-                                    if note_mode:
-                                        # Handles notes
-                                        notes_set = current_board[row][col]["notes"]
-                                        if number_pressed in notes_set:
-                                            notes_set.remove(number_pressed)
-                                        else:
-                                            notes_set.add(number_pressed)
-                                        current_board[row][col]["value"] = 0 # Make sure cell is empty
+                                if note_mode:
+                                    # Handles notes
+                                    notes_set = current_board[row][col]["notes"]
+                                    if number_pressed in notes_set:
+                                        notes_set.remove(number_pressed)
                                     else:
-                                        # Handle main value input
-                                        current_board[row][col]["value"] = number_pressed
-                                        current_board[row][col]["notes"] = set() # Clears notes
-                                except ValueError:
-                                    pass # If user didn't press a valid key
+                                        notes_set.add(number_pressed)
+                                    current_board[row][col]["value"] = 0 # Make sure cell is empty
+                                else:
+                                    # Handle main value input
+                                    current_board[row][col]["value"] = number_pressed
+                                    current_board[row][col]["notes"] = set() # Clears notes
+                            except ValueError:
+                                pass # If user didn't press a valid key
 
-
-                            elif ev.key == pygame.K_BACKSPACE: # COME BACK HERE <----
-                                print("Cleared cell.") # For now.
+                        elif ev.key in [pygame.K_BACKSPACE, pygame.K_DELETE]:
+                            print("Cleared cell.")
+                            current_board[row][col]["value"] = 0
+                            current_board[row][col]["notes"].clear()
 
         current_time_ms = pygame.time.get_ticks()
 
