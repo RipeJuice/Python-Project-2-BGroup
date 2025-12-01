@@ -1,5 +1,5 @@
 # MODEL (imagine main)
-# Only cares about tasks; doesn't ask for input
+# Model only focuses on tasks; doesn't take input
 
 # HELLO. THIS IS THE MAIN FILE. See below for file functions.
 # Right now, our goals are to create an environment where
@@ -42,9 +42,9 @@ import sys
 import colorsys
 import random
 
-# 10 for Easy, Medium, Hard (4x4) - 30 total
-# 10 for Easy, Medium, Hard (9x9) - 30 total
-#                                   60 total
+# 10 for each of Easy, Medium, Hard (4x4) - 30 total
+# 10 for each Easy, Medium, Hard, Evil (9x9) - 30 total
+# 60 total
 
 def initialize_game_grid(puzzle_string, size):
     grid = []
