@@ -38,12 +38,6 @@ import random
 # 10 for each of Easy, Medium, Hard, Evil (9x9) - 30 total
 # 60 total
 
-SONG_END_EVENT = pygame.USEREVENT + 1
-
-show_notification = False
-notification_timer = 0
-current_song_title = ""
-current_artist_name = ""
 
 def initialize_game_grid(puzzle_string, size):
     #Creates empty list for the grid
@@ -102,6 +96,8 @@ def main():
 
     #Randomly selects the difficulty
     random_diff = random.choice(["easy", "medium", "hard"])
+
+    #Randomly selects a number from 1 to 10
     random_int = random.randint(1, 10)
 
     #Creates current board using the function grab_puzzle

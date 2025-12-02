@@ -4,7 +4,8 @@
 # Imports
 import pygame
 import sys
-from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, LIGHT_GRAY, PRESSED_GRAY
+import music
+from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, font_menu_buttons, LIGHT_GRAY, PRESSED_GRAY
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 
 
@@ -16,7 +17,7 @@ bg_x1 = 0
 bg_x2 = WIDTH
 
 # Speed of the scroll (adjust as needed)
-SCROLL_SPEED = 0.08
+SCROLL_SPEED = 0.5
 
 def draw_scrolling_background():
     global bg_x1, bg_x2 # Declare globals to modify them
@@ -47,6 +48,9 @@ def draw_text(text, font_used, color, surface, x, y):
 
 def main_menu():
     """Displays the main menu and handles user input for game settings."""
+    music.load_music("../Code/background_music_1.mp3")
+    music.loop_music()
+
     while True:
 
         draw_scrolling_background()
@@ -56,7 +60,7 @@ def main_menu():
         draw_text('Broken Record', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4 - 50)
         font_size = 60
         menu_font = pygame.font.SysFont("Impact", font_size)
-        draw_text('SODOKU', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4)
+        draw_text('SUDOKU', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4)
         title_lines = pygame.Rect(150, 155, 50, 5)
         pygame.draw.rect(screen, WHITE, title_lines)
         title_lines = pygame.Rect(440, 155, 50, 5)
@@ -70,8 +74,8 @@ def main_menu():
         # Draw buttons
         pygame.draw.rect(screen, WHITE, play_button)
         pygame.draw.rect(screen, WHITE, exit_button)
-        draw_text('PLAY', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 25)
-        draw_text('EXIT', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 95)
+        draw_text('PLAY', font_menu_buttons, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 25)
+        draw_text('EXIT', font_menu_buttons, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 95)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
