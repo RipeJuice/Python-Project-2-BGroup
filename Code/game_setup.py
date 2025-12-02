@@ -48,7 +48,7 @@ def draw_text(text, font_used, color, surface, x, y):
 
 def main_menu():
     """Displays the main menu and handles user input for game settings."""
-    music.load_music("../Code/background_music_1.mp3")
+    music.load_music("../Music/background_music_1.mp3")
     music.loop_music()
 
     while True:
