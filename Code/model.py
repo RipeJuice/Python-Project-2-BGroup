@@ -83,7 +83,6 @@ def main():
 
     game_setup.main_menu()
 
-
     # --------------------------------
     random_diff = random.choice(["easy", "medium", "hard"])
     current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random.randint(1, 10)}")
@@ -111,6 +110,7 @@ def main():
 
     # Loading the music
     music.load_music(random.choice(music_files))
+    #music.load_music("../Code/background_music_1.mp3")
     # playing the music
     music.loop_music()
 
