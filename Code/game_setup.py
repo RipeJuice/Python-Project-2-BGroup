@@ -16,7 +16,7 @@ bg_x1 = 0
 bg_x2 = WIDTH
 
 # Speed of the scroll (adjust as needed)
-SCROLL_SPEED = 0.1
+SCROLL_SPEED = 0.08
 
 def draw_scrolling_background():
     global bg_x1, bg_x2 # Declare globals to modify them
