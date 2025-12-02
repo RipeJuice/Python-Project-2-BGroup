@@ -30,6 +30,7 @@ puzzles_and_solutions.py - contains puzzles and solutions
 from Code import controller
 from Code import game_setup
 from Code import view
+from Code.config import music_files
 from view import GameView, BOARD_SIZE
 from Code import puzzles_and_solutions
 from Code import music
@@ -106,7 +107,8 @@ def main():
     hue = 0
 
     # Loading the music
-    music.load_music("../Code/background_music_1.mp3")
+    music.load_music(random.choice(music_files))
+    #music.load_music("../Code/background_music_1.mp3")
     # playing the music
     music.loop_music()
 
