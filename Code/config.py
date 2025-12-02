@@ -23,9 +23,13 @@ electronic = []
 focus = [] # Your original probably fits here
 # etc.
 
-# All music files
-music_files = [
-    "../Music/alone-BoDleasons(upbeat).mp3",
+# All music files ((STILL NOT FINISHED. YOU WILL GET AN ERROR))
+music_files = {
+    "../Music/alone-BoDleasons(upbeat).mp3" :
+        {
+            "title" : "Alone"
+            "Artist" " BoDleasons"
+        },
     "../Music/amalgam-rockot(elec).mp3",
     "../Music/background-music-DELOSound(relaxing).mp3",
     "../Music/background-music-The_Mountain(focus).mp3",
@@ -39,6 +43,8 @@ music_files = [
     "../Music/neon-odyssey_short-Grand_Project(elec).mp3",
     "../Music/sleep-meditation-Petrushkasound(relaxing).mp3",
     "../Music/towards-the-sea-White_Records(upbeat).mp3"
-]
+}
+
+song_data = {}
 
 BOARD_SIZE = random.choice([4, 9])

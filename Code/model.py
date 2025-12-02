@@ -38,6 +38,12 @@ import random
 # 10 for each of Easy, Medium, Hard, Evil (9x9) - 30 total
 # 60 total
 
+SONG_END_EVENT = pygame.USEREVENT + 1
+
+show_notification = False
+notification_timer = 0
+current_song_title = ""
+current_artist_name = ""
 
 def initialize_game_grid(puzzle_string, size):
     #Creates empty list for the grid
@@ -83,6 +89,15 @@ def main():
     # The loop below will only start once main_menu() returns "start_game"
 
     game_setup.main_menu()
+
+    pygame.mixer.music.set_endevent(SONG_END_EVENT)
+
+    def play_next_song():
+        global show_notification, notification_timer, current_song_title, current_artist_name
+
+        current_song_title = song_data["title"]
+        # current_artist_name = song_data["artist"]
+        # path = song_data["path"]
 
     # --------------------------------
     random_diff = random.choice(["easy", "medium", "hard"])
