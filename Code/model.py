@@ -75,10 +75,6 @@ def get_row_col_from_mouse(pos, size, width):
     col = x // cell_size
     return row, col #Returns row and column
 
-
-
-
-
 def main():
     #ADDED: Start Menu Logic
     #Calls the main menu function from game_setup.py
@@ -105,14 +101,12 @@ def main():
     # Also, an attribute of a specific instance of GameView called board_size is assigned the value of the parameter size which is BOARD_SIZE.
     game_view_instance = GameView(BOARD_SIZE)
 
-
-    selected_cell = None # Before game defaults
-    note_mode = False # Before game defaults
-
+    # Before game defaults
+    selected_cell = None
+    note_mode = False
 
     # ... the rest of your main function remains the same ...
     from view import WIDTH
-
 
     clock = pygame.time.Clock()
     hue = 0

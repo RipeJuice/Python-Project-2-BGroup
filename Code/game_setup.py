@@ -56,7 +56,7 @@ def main_menu():
         draw_text('Broken Record', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4 - 50)
         font_size = 60
         menu_font = pygame.font.SysFont("Impact", font_size)
-        draw_text('SODOKU', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4)
+        draw_text('SUDOKU', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4)
         title_lines = pygame.Rect(150, 155, 50, 5)
         pygame.draw.rect(screen, WHITE, title_lines)
         title_lines = pygame.Rect(440, 155, 50, 5)

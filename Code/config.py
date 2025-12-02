@@ -1,7 +1,6 @@
 # SHARED VARIABLES
-# If you want to access a variable in this file (or any file really),
-# ...use "from {file name} import {variable}
-# ...ex. "from config import BOARD_SIZE"
+# If you want to access a variable use "from {file name} import {variable}"
+#e.g. "from config import BOARD_SIZE"
 import random
 from bisect import bisect_right
 
@@ -9,9 +8,7 @@ from bisect import bisect_right
 
 # Instrumental moods
 chill = []
-upbeat = [
-    ""
-]
+upbeat = []
 retro = []
 bright = []
 restless = []
