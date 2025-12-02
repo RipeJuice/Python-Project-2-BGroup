@@ -38,6 +38,7 @@ import random
 # 10 for each of Easy, Medium, Hard, Evil (9x9) - 30 total
 # 60 total
 
+
 def initialize_game_grid(puzzle_string, size):
     #Creates empty list for the grid
     grid = []
