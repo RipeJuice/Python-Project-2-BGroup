@@ -53,43 +53,51 @@ def initialize_game_grid(puzzle_string, size):
             #The variable value is assigned the integer value of the cell if it isn't empty otherwise it's assigned a value of zero.
             value = int(char) if char != '-' else 0
 
+            #Adds initial data to the cell
             cell_data = {
                 "value": value,
                 "notes": set(),
                 "is_original": value != 0
-            } # Adds data to cell
-            row.append(cell_data) # Adds cell to list
-        grid.append(row) # Adds entire row to grid
-    return grid
+            }
+            row.append(cell_data) #Adds the cell to the list for the row
+        grid.append(row) #Adds the entire row to the grid
+    return grid #Returns the grid
 
 
 
 def get_row_col_from_mouse(pos, size, width):
-    # Translates coordinates into rows and columns
-    x, y = pos
-    cell_size = width // size
+    #Converts the screen into rows and columns based on coordinate system
+    x, y = pos #x and y are assigned the respective values from pos
+    cell_size = width // size #cell_size is assigned the value of width divided by the board size
+    #row and column are  assigned the value of the y  and x position divided by the size of each cell
     row = y // cell_size
     col = x // cell_size
-    return row, col
+    return row, col #Returns row and column
 
 
 
 
 
 def main():
-    # --- ADDED: Start Menu Logic ---
-    # Call the main menu function from game_setup.py
-    # The loop below will only start once main_menu() returns "start_game"
-
+    #ADDED: Start Menu Logic
+    #Calls the main menu function from game_setup.py
+    #The loop  only starts if main_menu() returns "start_game"
     game_setup.main_menu()
 
-    # --------------------------------
+    #Randomly selects the difficulty
     random_diff = random.choice(["easy", "medium", "hard"])
-    current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random.randint(1, 10)}")
-    print(random_diff)
-    print(BOARD_SIZE)
-    print(current_board)
 
+    #Randomly selects a number from 1 to 10
+    random_int = random.randint(1, 10)
+
+    #Creates current board using the function grab_puzzle
+    current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
+    #Print statements for debugging
+    print(f"The difficulty is {random_diff}.")
+    print(f"The board size is {BOARD_SIZE}x{BOARD_SIZE}.")
+    print(f"The current board is {current_board}.")
+
+    #Changes the variable current_board  to the 2D Array created in the function initialize_game_grid
     current_board = initialize_game_grid(current_board, BOARD_SIZE)
 
     # The variable BOARD_SIZE is passed into the GameView class through the parameter size.
@@ -110,7 +118,6 @@ def main():
 
     # Loading the music
     music.load_music(random.choice(music_files))
-    #music.load_music("../Code/background_music_1.mp3")
     # playing the music
     music.loop_music()
 
