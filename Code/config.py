@@ -1,65 +1,44 @@
-#SHARED VARIABLES
-#If you want to access a variable from any file use "from {file name} import {variable}
-#e.g. "from config import BOARD_SIZE"
-
+# SHARED VARIABLES
+# If you want to access a variable in this file (or any file really),
+# ...use "from {file name} import {variable}
+# ...ex. "from config import BOARD_SIZE"
 import random
-
-BOARD_SIZE = random.choice([4, 9])
-
-# Possible artists to choose from:
-pop_artists = [
-    "Adele",
-    "Ariana Grande",
-    "Billie Eilish",
-    "Bruno Mars",
-    "Dua Lipa",
-    "Ed Sheeran",
-    "Justin Bieber",
-    "Lady Gaga",
-    "Michael Jackson",
-    "Taylor Swift"
-]
-
-rock_artists = [
-    "Arctic Monkeys",
-    "Billie Eilish (collaborations)",
-    "Foo Fighters",
-    "Green Day",
-    "Imagine Dragons",
-    "Linkin Park",
-    "Nirvana",
-    "Paramore",
-    "The Beatles",
-    "Twenty One Pilots"
-]
-
-country_artists = [
-    "Blake Shelton",
-    "Carrie Underwood",
-    "Chris Stapleton",
-    "Dan + Shay",
-    "Eric Church",
-    "Kacey Musgraves",
-    "Luke Bryan",
-    "Morgan Wallen",
-    "Miranda Lambert",
-    "Taylor Swift"
-]
+from bisect import bisect_right
 
 # Music files
 
-# Instrumental
+# Instrumental moods
 chill = []
-upbeat = []
+upbeat = [
+    ""
+]
 retro = []
+bright = []
+restless = []
+dreamy = []
+hopeful = []
+uplifting = []
+relaxing = []
+electronic = []
+focus = [] # Your original probably fits here
 # etc.
-
-# Lyrical (for simplicity, only most well-known)
-pop = []
-rock = []
-country = []
-# etc.
-
 
 # All music files
-music_files = []
+music_files = [
+    "../Music/alone-BoDleasons(upbeat).mp3",
+    "../Music/amalgam-rockot(elec).mp3",
+    "../Music/background-music-DELOSound(relaxing).mp3",
+    "../Music/background-music-The_Mountain(focus).mp3",
+    "../Music/background_music_1.mp3",
+    "../Music/dancing-on-the-waves-White_Records(upbeat).mp3",
+    "../Music/echoes-of-bach-badinerie:White_Records(upbeat).mp3",
+    "../Music/hopeful-Top-Flow(hopeful).mp3",
+    "../Music/inspiring-SigmaMusicArtist(bright).mp3",
+    "../Music/motivational-Top-Flow(uplifting).mp3",
+    "../Music/Movement-SoulProdMusic.mp3",
+    "../Music/neon-odyssey_short-Grand_Project(elec).mp3",
+    "../Music/sleep-meditation-Petrushkasound(relaxing).mp3",
+    "../Music/towards-the-sea-White_Records(upbeat).mp3"
+]
+
+BOARD_SIZE = random.choice([4, 9])
