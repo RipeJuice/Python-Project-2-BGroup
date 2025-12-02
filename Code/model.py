@@ -1,58 +1,56 @@
 # MODEL (imagine main)
-# Model only focuses on tasks; doesn't take input
-
-# HELLO. THIS IS THE MAIN FILE. See below for file functions.
-# Right now, our goals are to create an environment where
-# the user can interact with the game to play and getting all
-# of the boards ready in our dictionaries. We also need a
-# home screen and settings, among other things. I would love
-# to make this as aesthetically pleasing as possible, so
-# if you want to add something visually nice, go ahead.
-# I got it to work, so try running this file. If you want to test
-# individual code, just change the file at the top next to the play button.
+# Model only focuses on tasks. It doesn't take input.
+"""
+HELLO. THIS IS THE MAIN FILE. See below for file functions.
+# Currently, the goals are to create an environment which allows the user to interact with the program
+and to get all the boards ready in the dictionaries. We also need a home screen and settings.
+I would love to make the game as aesthetically pleasing as possible, so if you want to add visually pleasing features, go ahead.
+#It is working, so try running the model file. If you want to test individual code, just change the file at the top next to the play button.
+"""
 
 """
 Different files have different functions:
-model.py - organizes everything and runs tasks (also holds main loop)
-view.py - displays what user sees
-controller.py - controls user input and connects model and view
-game_setup.py - all pre-game setup like main menu, settings (including setting defaults),
-    and more. Could include things like music, etc.
-config. py - stores shared variables
-puzzles_and_solutions.py - contains puzzles and solutions
+model.py - Organizes all of the files and runs tasks. Also holds main loop.
+view.py - Displays what user can see.
+controller.py - Controls user input and the connects the model and the view.
+game_setup.py - All pre-game setup like main menu, settings (including setting defaults) and more.
+config. py - Stores shared variables
+puzzles_and_solutions.py - Contains puzzles and solutions
 """
 
 
-
-
-
-# Imports
+#Imports
 from Code import controller
+from controller import SudokuInputController
 from Code import game_setup
 from Code import view
 from view import GameView, BOARD_SIZE
 from Code import puzzles_and_solutions
 from Code import music
-from music import load_music
-from music import loop_music
 from config import BOARD_SIZE
-from controller import SudokuInputController
 import pygame
 import sys
 import colorsys
 import random
 
 # 10 for each of Easy, Medium, Hard (4x4) - 30 total
-# 10 for each Easy, Medium, Hard, Evil (9x9) - 30 total
+# 10 for each of Easy, Medium, Hard, Evil (9x9) - 30 total
 # 60 total
 
 def initialize_game_grid(puzzle_string, size):
+    #Creates empty list for the grid
     grid = []
+    #A for loop which iterates for the value of either 4 or 9. i is for vertical direction.
     for i in range(size):
-        row = [] # Rows inside grid
+        #Creates an empty list for the rows inside the grid.
+        row = []
+        #A for loop which iterates for the value of either 4 or 9. j is for horizontal direction.
         for j in range(size):
-            char = puzzle_string[i * size + j] # Sets char to the original cell value
-            value = int(char) if char != '-' else 0 # Makes sure it isn't empty and turns the char into integer
+            #Assign the variable char the correct index of the parameter puzzle_string.
+            #The correct index is calculated by adding the number of cells per row by the number of rows and adding the position across the current row.
+            char = puzzle_string[i * size + j]
+            #The variable value is assigned the integer value of the cell if it isn't empty otherwise it's assigned a value of zero.
+            value = int(char) if char != '-' else 0
 
             cell_data = {
                 "value": value,
@@ -91,6 +89,8 @@ def main():
 
     current_board = initialize_game_grid(current_board, BOARD_SIZE)
 
+    # The variable BOARD_SIZE is passed into the GameView class through the parameter size.
+    # Also, an attribute of a specific instance of GameView called board_size is assigned the value of the parameter size which is BOARD_SIZE.
     game_view_instance = GameView(BOARD_SIZE)
 
 

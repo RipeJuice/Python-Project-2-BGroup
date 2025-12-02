@@ -1,8 +1,10 @@
-# SHARED VARIABLES
-# If you want to access a variable in this file (or any file really),
-# ...use "from {file name} import {variable}
-# ...ex. "from config import BOARD_SIZE"
+#SHARED VARIABLES
+#If you want to access a variable from any file use "from {file name} import {variable}
+#e.g. "from config import BOARD_SIZE"
+
 import random
+
+BOARD_SIZE = random.choice([4, 9])
 
 # Possible artists to choose from:
 pop_artists = [
@@ -61,5 +63,3 @@ country = []
 
 # All music files
 music_files = []
-
-BOARD_SIZE = random.choice([4, 9])
