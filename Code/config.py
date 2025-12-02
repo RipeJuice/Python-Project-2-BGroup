@@ -22,6 +22,7 @@ focus = [] # Your original probably fits here
 
 # All music files
 music_files = [
+
     "../Music/alone-BoDleasons(upbeat).mp3",
     "../Music/amalgam-rockot(elec).mp3",
     "../Music/background-music-DELOSound(relaxing).mp3",
