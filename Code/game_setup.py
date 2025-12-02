@@ -8,7 +8,7 @@ from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, LIGHT_GRAY, PRESSED_
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 
 
-BACKGROUND_IMG = pygame.image.load("../download.jpeg")
+BACKGROUND_IMG = pygame.image.load("../monogram-line-seamless-pattern_8830-622 copy.tiff")
 
 # Initial position for the first image
 bg_x1 = 0
@@ -51,15 +51,25 @@ def main_menu():
 
         draw_scrolling_background()
 
-        draw_text('Sudoku ULTIMATE', font, BLACK, screen, WIDTH // 2, HEIGHT // 4)
+        font_size = 40
+        menu_font = pygame.font.SysFont("Impact", font_size)
+        draw_text('Broken Record', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4 - 50)
+        font_size = 60
+        menu_font = pygame.font.SysFont("Impact", font_size)
+        draw_text('SODOKU', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4)
+        title_lines = pygame.Rect(150, 155, 50, 5)
+        pygame.draw.rect(screen, WHITE, title_lines)
+        title_lines = pygame.Rect(440, 155, 50, 5)
+        pygame.draw.rect(screen, WHITE, title_lines)
+
 
         # Define button areas (simple Rect objects for collision detection)
         play_button = pygame.Rect(WIDTH // 4, HEIGHT // 2, WIDTH // 2, 50)
         exit_button = pygame.Rect(WIDTH // 4, HEIGHT // 2 + 70, WIDTH // 2, 50)
 
         # Draw buttons
-        pygame.draw.rect(screen, LIGHT_GRAY, play_button)
-        pygame.draw.rect(screen, LIGHT_GRAY, exit_button)
+        pygame.draw.rect(screen, WHITE, play_button)
+        pygame.draw.rect(screen, WHITE, exit_button)
         draw_text('PLAY', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 25)
         draw_text('EXIT', font, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 95)
 
