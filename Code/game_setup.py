@@ -8,6 +8,35 @@ from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, LIGHT_GRAY, PRESSED_
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 
 
+BACKGROUND_IMG = pygame.image.load("../download.jpeg")
+
+# Initial position for the first image
+bg_x1 = 0
+# Initial position for the second image (right next to the first one)
+bg_x2 = WIDTH
+
+# Speed of the scroll (adjust as needed)
+SCROLL_SPEED = 0.1
+
+def draw_scrolling_background():
+    global bg_x1, bg_x2 # Declare globals to modify them
+
+    # 1. Move both images left
+    bg_x1 -= SCROLL_SPEED
+    bg_x2 -= SCROLL_SPEED
+
+    # 2. Check if the first image is fully off-screen
+    if bg_x1 <= -WIDTH:
+        bg_x1 = WIDTH # Reset its position to the right of the second image
+
+    # 3. Check if the second image is fully off-screen
+    if bg_x2 <= -WIDTH:
+        bg_x2 = WIDTH # Reset its position to the right of the first image
+
+    # 4. Draw both images
+    screen.blit(BACKGROUND_IMG, (bg_x1, 0))
+    screen.blit(BACKGROUND_IMG, (bg_x2, 0))
+
 
 def draw_text(text, font_used, color, surface, x, y):
     """Helper function to draw text on the screen."""
@@ -19,7 +48,9 @@ def draw_text(text, font_used, color, surface, x, y):
 def main_menu():
     """Displays the main menu and handles user input for game settings."""
     while True:
-        screen.fill(WHITE)
+
+        draw_scrolling_background()
+
         draw_text('Sudoku ULTIMATE', font, BLACK, screen, WIDTH // 2, HEIGHT // 4)
 
         # Define button areas (simple Rect objects for collision detection)
@@ -44,6 +75,7 @@ def main_menu():
                 if exit_button.collidepoint(event.pos):
                     pygame.quit()
                     sys.exit()
+
 
 
         pygame.display.update()

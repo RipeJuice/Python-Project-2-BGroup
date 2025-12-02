@@ -82,7 +82,9 @@ def main():
     # --- ADDED: Start Menu Logic ---
     # Call the main menu function from game_setup.py
     # The loop below will only start once main_menu() returns "start_game"
+
     game_setup.main_menu()
+
     # --------------------------------
     random_diff = random.choice(["easy", "medium", "hard"])
     current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random.randint(1, 10)}")
