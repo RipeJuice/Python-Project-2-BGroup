@@ -40,6 +40,7 @@ global GRAY
 global screen
 
 global font
+global font_menu_buttons
 
 # Initializes Pygame
 pygame.init()
@@ -70,6 +71,7 @@ pygame.display.set_caption(f"Sudoku ULTIMATE")
 # Fonts
 font_size = 40 if BOARD_SIZE == 9 else 60
 font = pygame.font.SysFont("Impact", font_size)
+font_menu_buttons = pygame.font.SysFont("Impact", 40)
 
 class GameView:
 
