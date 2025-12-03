@@ -82,13 +82,13 @@ def main():
     # --------------------------------
     random_diff = random.choice(["easy", "medium", "hard"])
     random_int = random.randint(1, 10)
-    current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
+    current_basic_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
     print(random_diff)
     print(BOARD_SIZE)
-    print(current_board)
+    print(current_basic_board)
 
     # current_board is assigned the 2D Array initialized in the function initialize_game_grid
-    current_board = initialize_game_grid(current_board, BOARD_SIZE)
+    current_board = initialize_game_grid(current_basic_board, BOARD_SIZE)
 
     # The variable BOARD_SIZE is passed into the GameView class through the parameter size.
     # Also, an attribute of a specific instance of GameView called board_size is assigned the value of the parameter size which is BOARD_SIZE.
@@ -154,6 +154,8 @@ def main():
                                     # Handle main value input
                                     current_board[row][col]["value"] = number_pressed
                                     current_board[row][col]["notes"] = set() # Clears notes
+                                    puzzles_and_solutions.convert_array_to_string(current_board) # Calls function to convert board from array to string
+                                    puzzles_and_solutions.solve_puzzle(current_basic_board) # Calls function to check the board
                             except ValueError:
                                 pass # If user didn't press a valid key
 
