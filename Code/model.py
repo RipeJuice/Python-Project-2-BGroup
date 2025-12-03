@@ -38,7 +38,6 @@ import random
 # 10 for each of Easy, Medium, Hard, Evil (9x9) - 30 total
 # 60 total
 
-
 def initialize_game_grid(puzzle_string, size):
     #Creates empty list for the grid
     grid = []
@@ -96,10 +95,17 @@ def main():
 
     #Randomly selects the difficulty
     random_diff = random.choice(["easy", "medium", "hard"])
+    random_int = random.randint(1, 10)
+    current_basic_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
+    print(random_diff)
+    print(BOARD_SIZE)
+    print(current_basic_board)
 
     #Randomly selects a number from 1 to 10
     random_int = random.randint(1, 10)
 
+    # current_board is assigned the 2D Array initialized in the function initialize_game_grid
+    current_board = initialize_game_grid(current_basic_board, BOARD_SIZE)
     #Creates current board using the function grab_puzzle
     current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
     #Print statements for debugging
@@ -114,10 +120,9 @@ def main():
     # Also, an attribute of a specific instance of GameView called board_size is assigned the value of the parameter size which is BOARD_SIZE.
     game_view_instance = GameView(BOARD_SIZE)
 
-
-    selected_cell = None # Before game defaults
-    note_mode = False # Before game defaults
-
+    # Before game defaults
+    selected_cell = None
+    note_mode = False
 
     # ... the rest of your main function remains the same ...
     from view import WIDTH
@@ -128,7 +133,7 @@ def main():
 
     # Loading the music
     music.load_music(random.choice(music_files))
-    # playing the music
+    # Playing the music
     music.loop_music()
 
     running = True
@@ -142,16 +147,18 @@ def main():
                 running = False
 
             # MOUSE CLICK
-            if ev.type == pygame.MOUSEBUTTONDOWN: # Mouse clicks
-                row, col = get_row_col_from_mouse(ev.pos, BOARD_SIZE, WIDTH) # Gets coordinates of cell clicked
-                selected_cell = (row, col) # Defines that
+            if ev.type == pygame.MOUSEBUTTONDOWN: # Mouse clicked
+                row, col = get_row_col_from_mouse(ev.pos, BOARD_SIZE, WIDTH) # translates coordinates into rows and columns
+                selected_cell = (row, col) # Assigns the row and column to one variable: selected_cell
                 print(f"Selected cell: {row}, {col}") # Testing
 
             # TYPING
             if ev.type == pygame.KEYDOWN:
+                # if "n" is pressed
                 if ev.key == pygame.K_n:
+                    # note mode is changed to the opposite value or the current value
                     note_mode = not note_mode
-                    print(f"Note mode is now {'ON' if note_mode else 'OFF'}")
+                    print(f"Note mode is now {'ON' if note_mode else 'OFF'}") # Testing
 
                 if selected_cell:
                     row, col = selected_cell
@@ -174,6 +181,8 @@ def main():
                                     # Handle main value input
                                     current_board[row][col]["value"] = number_pressed
                                     current_board[row][col]["notes"] = set() # Clears notes
+                                    puzzles_and_solutions.convert_array_to_string(current_board) # Calls function to convert board from array to string
+                                    puzzles_and_solutions.solve_puzzle(current_basic_board) # Calls function to check the board
                             except ValueError:
                                 pass # If user didn't press a valid key
 
