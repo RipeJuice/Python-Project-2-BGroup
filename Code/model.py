@@ -25,7 +25,7 @@ from controller import SudokuInputController
 from Code import game_setup
 from Code import view
 from Code.config import music_files
-from view import GameView, BOARD_SIZE
+from view import GameView
 from Code import puzzles_and_solutions
 from Code import music
 from config import BOARD_SIZE
@@ -93,16 +93,30 @@ def main():
         # current_artist_name = song_data["artist"]
         # path = song_data["path"]
 
-    #Randomly selects the difficulty
-    random_diff = random.choice(["easy", "medium", "hard"])
-    random_int = random.randint(1, 10)
-    current_basic_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
-    print(random_diff)
-    print(BOARD_SIZE)
-    print(current_basic_board)
+    # --------------------------------
+    # --- MENU SELECTION ---
+    BOARD_SIZE, difficulty = game_setup.main_menu()
 
+    print("Chosen board size:", BOARD_SIZE)
+    print("Chosen difficulty:", difficulty)
+
+    # Store into global config
+    import config
+    config.BOARD_SIZE = BOARD_SIZE
+
+    # --- Load Puzzle ---
+    puzzle_index = random.randint(1, 10)
+    current_board_string = puzzles_and_solutions.grab_puzzle(
+        difficulty,
+        BOARD_SIZE,
+        puzzle_index
+    )
     #Randomly selects a number from 1 to 10
     random_int = random.randint(1, 10)
+    current_board = initialize_game_grid(current_board_string, BOARD_SIZE)
+
+    print(BOARD_SIZE)
+    print(current_board)
 
     # current_board is assigned the 2D Array initialized in the function initialize_game_grid
     current_board = initialize_game_grid(current_basic_board, BOARD_SIZE)
@@ -126,7 +140,6 @@ def main():
 
     # ... the rest of your main function remains the same ...
     from view import WIDTH
-
 
     clock = pygame.time.Clock()
     hue = 0

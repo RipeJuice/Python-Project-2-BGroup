@@ -47,49 +47,59 @@ def draw_text(text, font_used, color, surface, x, y):
     surface.blit(textobj, textrect)
 
 def main_menu():
-    """Displays the main menu and handles user input for game settings."""
-    music.load_music("../Music/background_music_1.mp3")
-    music.loop_music()
+    """Menu to select board size and difficulty."""
+    selected_size = None
+    selected_difficulty = None
+
+    # Difficulty pools
+    difficulties_all = ["easy", "medium", "hard"]
+    difficulties_9x9_only = ["evil"]
 
     while True:
-
         draw_scrolling_background()
+        draw_text("Sudoku", font, WHITE, screen, WIDTH // 2, HEIGHT // 6)
 
-        font_size = 40
-        menu_font = pygame.font.SysFont("Impact", font_size)
-        draw_text('Broken Record', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4 - 50)
-        font_size = 60
-        menu_font = pygame.font.SysFont("Impact", font_size)
-        draw_text('SUDOKU', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4)
-        title_lines = pygame.Rect(150, 155, 50, 5)
-        pygame.draw.rect(screen, WHITE, title_lines)
-        title_lines = pygame.Rect(440, 155, 50, 5)
-        pygame.draw.rect(screen, WHITE, title_lines)
+        # --- SIZE BUTTONS ---
+        size4_btn = pygame.Rect(WIDTH//4, HEIGHT//3, WIDTH//2, 50)
+        size9_btn = pygame.Rect(WIDTH//4, HEIGHT//3 + 60, WIDTH//2, 50)
 
+        pygame.draw.rect(screen, LIGHT_GRAY, size4_btn)
+        pygame.draw.rect(screen, LIGHT_GRAY, size9_btn)
+        draw_text("4 x 4", font, BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
+        draw_text("9 x 9", font, BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
+        diff_buttons = []
+        # Draw difficulty buttons AFTER size is chosen
+        if selected_size:
 
-        # Define button areas (simple Rect objects for collision detection)
-        play_button = pygame.Rect(WIDTH // 4, HEIGHT // 2, WIDTH // 2, 50)
-        exit_button = pygame.Rect(WIDTH // 4, HEIGHT // 2 + 70, WIDTH // 2, 50)
+            diff_buttons = []
+            diff_list = difficulties_all + (difficulties_9x9_only if selected_size == 9 else [])
 
-        # Draw buttons
-        pygame.draw.rect(screen, WHITE, play_button)
-        pygame.draw.rect(screen, WHITE, exit_button)
-        draw_text('PLAY', font_menu_buttons, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 25)
-        draw_text('EXIT', font_menu_buttons, BLACK, screen, WIDTH // 2, HEIGHT // 2 + 95)
+            for i, diff in enumerate(diff_list):
+                rect = pygame.Rect(WIDTH//4, HEIGHT//2 + 60 + i*60, WIDTH//2, 50)
+                diff_buttons.append((rect, diff))
+                pygame.draw.rect(screen, LIGHT_GRAY, rect)
+                draw_text(diff.upper(), font, BLACK, screen, WIDTH//2, rect.y + 25)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if play_button.collidepoint(event.pos):
-                    # In a real scenario, you'd return selected settings (e.g., "easy", "9")
-                    # For now, we return a simple flag to start the game
-                    return "start_game"
-                if exit_button.collidepoint(event.pos):
-                    pygame.quit()
-                    sys.exit()
+                # SIZE
+                if size4_btn.collidepoint(event.pos):
+                    selected_size = 4
 
+                if size9_btn.collidepoint(event.pos):
+                    selected_size = 9
 
+                # DIFFICULTY
+                if selected_size:
+                    for rect, diff in diff_buttons:
+                        if rect.collidepoint(event.pos):
+                            selected_difficulty = diff
+                            print(selected_difficulty)
+                            print(selected_size)
+                            return selected_size, selected_difficulty
 
         pygame.display.update()

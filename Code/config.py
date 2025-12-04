@@ -95,4 +95,4 @@ def get_data(file):
 song_data = get_data(music_files[13]) # To be used later in model
 print(song_data) # Test. You can try running just this file if you want to see
 
-BOARD_SIZE = random.choice([4, 9])
+BOARD_SIZE = 9
