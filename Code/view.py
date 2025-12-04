@@ -56,9 +56,11 @@ CELL_SIZE = WIDTH // GRID_COLS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (100, 100, 100)
+BLUE = (0, 0, 255)
 LIGHT_GRAY = (200, 200, 200)
 PRESSED_GRAY = (210, 210, 210)
 TRANSBLUE = (0, 0, 255, 180)
+
 
 
 # Display Setup
@@ -84,9 +86,9 @@ class GameView:
         self.note_font = pygame.font.SysFont("Impact", self.note_font_size)
 
     def draw_now_playing_popup(self, title, artist):
+
         BAR_COLOR = (TRANSBLUE)
         TEXT_COLOR = (WHITE)
-
         bar_height = 40
         popup_surface = pygame.Surface((WIDTH, bar_height), pygame.SRCALPHA)
         popup_surface.fill(BAR_COLOR)
