@@ -35,6 +35,7 @@ global CELL_SIZE
 global WHITE
 global BLACK
 global GRAY
+global PINK
 
 global screen
 
@@ -58,6 +59,7 @@ BLACK = (0, 0, 0)
 GRAY = (100, 100, 100)
 LIGHT_GRAY = (200, 200, 200)
 PRESSED_GRAY = (210, 210, 210)
+PINK = (255, 174, 219)
 
 
 # Display Setup

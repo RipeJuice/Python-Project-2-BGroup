@@ -192,7 +192,7 @@ def main():
                                     current_board[row][col]["value"] = number_pressed
                                     current_board[row][col]["notes"] = set() # Clears notes
                                     puzzles_and_solutions.convert_array_to_string(current_board) # Calls function to convert board from array to string
-                                    puzzles_and_solutions.solve_puzzle(current_basic_board) # Calls function to check the board
+                                    puzzles_and_solutions.solve_puzzle(current_basic_string) # Calls function to check the board
                             except ValueError:
                                 pass # If user didn't press a valid key
 
