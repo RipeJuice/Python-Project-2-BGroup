@@ -66,10 +66,9 @@ def main_menu():
 
         draw_scrolling_background()
 
-
         # --- SIZE BUTTONS ---
-        size4_btn = pygame.Rect(WIDTH//4, HEIGHT//3, WIDTH//2, 50)
-        size9_btn = pygame.Rect(WIDTH//4, HEIGHT//3 + 60, WIDTH//2, 50)
+        size4_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3, WIDTH // 2, 50)
+        size9_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3 + 60, WIDTH // 2, 50)
         font_size = 40
         menu_font = pygame.font.SysFont("Impact", font_size)
         draw_text('Broken Record', menu_font, WHITE, screen, WIDTH // 2, HEIGHT // 4 - 50)
