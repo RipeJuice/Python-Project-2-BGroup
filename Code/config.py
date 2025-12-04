@@ -22,6 +22,13 @@ electronic = []
 focus = [] # Your original probably fits here
 # etc.
 
+# NOTE: ALL MUSIC FILES MUST BE IN THIS FORMAT
+#      >"[title]~[Artist]([genre]).mp3"<
+#        *All spaces in title must be seperated by "-" or "_"
+#                 *Artist should be exactly as written on site
+#                        *Genre should be lower case and match one of the above genres exactly
+
+
 # All music files
 music_files = [
     "../Music/alone~BoDleasons(upbeat).mp3",
@@ -62,9 +69,30 @@ def get_data(file):
             break
         if char != "(" and char != ")":
             genre += char
-    return title, artist, genre
 
-song_data = get_data(music_files[7])
-print(song_data)
+    # Formatting for visibility
+    f_title = ""
+
+    flag = False
+    i = 0
+    for char in title:
+        if i == 0 or flag:
+            f_title += char.upper()
+            flag = False
+        else:
+            if char == "-" or char == "_":
+                f_title += " "
+                flag = True
+            else:
+                f_title += char
+
+        i += 1
+
+
+
+    return f_title, artist, genre
+
+song_data = get_data(music_files[13]) # To be used later in model
+print(song_data) # Test. You can try running just this file if you want to see
 
 BOARD_SIZE = random.choice([4, 9])
