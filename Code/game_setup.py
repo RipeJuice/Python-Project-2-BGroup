@@ -46,7 +46,12 @@ def draw_text(text, font_used, color, surface, x, y):
     textrect.center = (x, y)
     surface.blit(textobj, textrect)
 
+global selected_size
+global selected_difficulty
+
 def main_menu():
+    global selected_size
+    global selected_difficulty
     """Menu to select board size and difficulty."""
     selected_size = None
     selected_difficulty = None

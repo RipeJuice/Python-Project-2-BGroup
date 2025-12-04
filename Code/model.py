@@ -95,10 +95,7 @@ def main():
 
     # --------------------------------
     # --- MENU SELECTION ---
-    BOARD_SIZE, difficulty = game_setup.main_menu()
-
-    print("Chosen board size:", BOARD_SIZE)
-    print("Chosen difficulty:", difficulty)
+    BOARD_SIZE, difficulty = game_setup.main_menu() # Connects the return values of selected_size and selected_difficulty to new variables.
 
     # Store into global config
     import config
@@ -119,11 +116,11 @@ def main():
     print(current_board)
 
     # current_board is assigned the 2D Array initialized in the function initialize_game_grid
-    current_board = initialize_game_grid(current_basic_board, BOARD_SIZE)
+    current_board = initialize_game_grid(current_board_string, BOARD_SIZE)
     #Creates current board using the function grab_puzzle
-    current_board = puzzles_and_solutions.grab_puzzle(f"{random_diff}", f"{BOARD_SIZE}", f"{random_int}")
+    current_board = puzzles_and_solutions.grab_puzzle(f"{difficulty}", f"{BOARD_SIZE}", f"{random_int}")
     #Print statements for debugging
-    print(f"The difficulty is {random_diff}.")
+    print(f"The difficulty is {difficulty}.")
     print(f"The board size is {BOARD_SIZE}x{BOARD_SIZE}.")
     print(f"The current board is {current_board}.")
 
