@@ -21,12 +21,11 @@ import pygame
 import sys
 from pygame import display, font, event
 from pygame.locals import *
-from config import BOARD_SIZE
+import config
 import math
 import random
 
 # Global Declarations
-global BOARD_SIZE
 
 global WIDTH
 global HEIGHT
@@ -51,8 +50,8 @@ pygame.init()
 
 WIDTH = 640 # was 540
 HEIGHT = 640 # was 540
-GRID_ROWS = BOARD_SIZE
-GRID_COLS = BOARD_SIZE
+GRID_ROWS = config.BOARD_SIZE
+GRID_COLS = config.BOARD_SIZE
 CELL_SIZE = WIDTH // GRID_COLS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -70,7 +69,7 @@ pygame.display.set_caption(f"Sudoku ULTIMATE")
 
 
 # Fonts
-font_size = 40 if BOARD_SIZE == 9 else 60
+font_size = 40 if config.BOARD_SIZE == 9 else 60
 font = pygame.font.SysFont("Impact", font_size)
 font_menu_buttons = pygame.font.SysFont("Impact", 40)
 
@@ -105,7 +104,7 @@ class GameView:
     def draw_grid(self, grid_color):
         screen.fill(WHITE)
         # Determine the subgrid size (3 for 9x9, 2 for 4x4)
-        subgrid_size = 3 if BOARD_SIZE == 9 else 2
+        subgrid_size = 3 if config.BOARD_SIZE == 9 else 2
         for i in range(GRID_ROWS + 1):
             # Thicker lines for subgrid boundaries
             thickness = 3 if i % subgrid_size == 0 else 1
