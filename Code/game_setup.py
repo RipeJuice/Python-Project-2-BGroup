@@ -5,7 +5,7 @@
 import pygame
 import sys
 import music
-from view import screen, WIDTH, HEIGHT, WHITE, BLACK, PINK, font, font_menu_buttons, LIGHT_GRAY, PRESSED_GRAY
+from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, font_menu_buttons, LIGHT_GRAY, PRESSED_GRAY
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 
 
@@ -65,7 +65,7 @@ def main_menu():
     while True:
 
         draw_scrolling_background()
-        draw_text("Sudoku", font, WHITE, screen, WIDTH // 2, HEIGHT // 6)
+
 
         # --- SIZE BUTTONS ---
         size4_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3, WIDTH // 2, 50)
