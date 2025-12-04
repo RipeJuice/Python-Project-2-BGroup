@@ -4,6 +4,9 @@
 import random
 from bisect import bisect_right
 
+
+
+
 # Music files
 
 # Instrumental moods
@@ -46,6 +49,7 @@ music_files = [
     "../Music/sleep-meditation~Petrushkasound(relaxing).mp3",
     "../Music/towards-the-sea~White_Records(upbeat).mp3"
 ]
+num = random.randint(0, len(music_files)-1)
 
 def get_data(file):
     i = 0
@@ -92,7 +96,8 @@ def get_data(file):
 
     return f_title, artist, genre
 
-song_data = get_data(music_files[13]) # To be used later in model
-print(song_data) # Test. You can try running just this file if you want to see
+
+#song_data = get_data(music_files[num]) # To be used later in model
+#print(song_data) # Test. You can try running just this file if you want to see
 
 BOARD_SIZE = random.choice([4, 9])

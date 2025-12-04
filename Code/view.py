@@ -59,6 +59,7 @@ BLACK = (0, 0, 0)
 GRAY = (100, 100, 100)
 LIGHT_GRAY = (200, 200, 200)
 PRESSED_GRAY = (210, 210, 210)
+TRANSBLUE = (0, 0, 255, 180)
 
 
 # Display Setup
@@ -83,6 +84,23 @@ class GameView:
         self.note_font_size = int(font_size * 0.4)
         self.note_font = pygame.font.SysFont("Impact", self.note_font_size)
 
+    def draw_now_playing_popup(self, title, artist):
+        BAR_COLOR = (TRANSBLUE)
+        TEXT_COLOR = (WHITE)
+
+        bar_height = 40
+        popup_surface = pygame.Surface((WIDTH, bar_height), pygame.SRCALPHA)
+        popup_surface.fill(BAR_COLOR)
+
+        screen.blit(popup_surface, (0, HEIGHT - bar_height))
+
+        now_playing_text = f"Now Playing... {title} by {artist}"
+
+        text_surface = font.render(now_playing_text, True, TEXT_COLOR)
+
+        text_rect = text_surface.get_rect(center=(WIDTH // 2, HEIGHT - bar_height // 2))
+
+        screen.blit(text_surface, text_rect)
 
     def draw_grid(self, grid_color):
         screen.fill(WHITE)

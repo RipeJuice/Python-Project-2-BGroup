@@ -28,11 +28,21 @@ from Code.config import music_files
 from view import GameView, BOARD_SIZE
 from Code import puzzles_and_solutions
 from Code import music
-from config import BOARD_SIZE
+from config import BOARD_SIZE, get_data, num
 import pygame
 import sys
 import colorsys
 import random
+
+
+
+
+SONG_END_EVENT = pygame.USEREVENT + 1
+
+show_notification = False
+notification_timer = 0
+current_song_title = ""
+current_artist_name = ""
 
 # 10 for each of Easy, Medium, Hard (4x4) - 30 total
 # 10 for each of Easy, Medium, Hard, Evil (9x9) - 30 total
@@ -89,7 +99,21 @@ def main():
     def play_next_song():
         global show_notification, notification_timer, current_song_title, current_artist_name
 
-        current_song_title = song_data["title"]
+        print(SONG_END_EVENT)
+        song_data = get_data(music_files[num])
+        current_song_title = song_data[0]
+        current_artist_name = song_data[1]
+
+
+        music.load_music(music_files[num])
+        music.loop_music()
+
+        show_notification = True
+
+        notification_timer = pygame.time.get_ticks() + 4000 # 4000 ms = 4 secs
+
+    play_next_song()
+
         # current_artist_name = song_data["artist"]
         # path = song_data["path"]
 
@@ -140,6 +164,7 @@ def main():
     while running:
         # ... (rest of the while loop code you already had) ...
         clock.tick(60)
+        current_time_ms = pygame.time.get_ticks()
 
         for ev in pygame.event.get():
             # EXIT GAME
@@ -190,8 +215,14 @@ def main():
                             print("Cleared cell.")
                             current_board[row][col]["value"] = 0
                             current_board[row][col]["notes"].clear()
+            if ev.type == SONG_END_EVENT:
+                print("Song ended, loading next track...")
+                play_next_song()
+        global show_notification
+        if show_notification and current_time_ms > notification_timer:
+            show_notification = False
 
-        current_time_ms = pygame.time.get_ticks()
+
 
         hue = (hue + 0.0005) % 1.0
 
@@ -211,6 +242,9 @@ def main():
         game_view_instance.draw_selection(selected_cell, current_time_ms, glow_color)
 
         game_view_instance.draw_numbers(current_board, dynamic_color)
+
+        if show_notification:
+            game_view_instance.draw_now_playing_popup(current_song_title, current_artist_name)
 
         # Update the display
         pygame.display.update()
