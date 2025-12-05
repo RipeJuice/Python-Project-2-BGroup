@@ -80,6 +80,12 @@ def grab_puzzle(diff, size, num):
     return puzzle
 
 #Function to check the board
-def solve_row(self):
-    
+def solve_row(self, row_parameter, col_parameter):
+
+    print(f"The current row is {row_parameter}")
+
+    for index in self[row_parameter]:
+
+        print(f"The current column is {col_parameter}")
+
     print(f"The board to check is {self}")
