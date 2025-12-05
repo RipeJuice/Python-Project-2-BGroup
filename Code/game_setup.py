@@ -7,7 +7,8 @@ import sys
 import music
 from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, font_menu_buttons, LIGHT_GRAY, PRESSED_GRAY
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
-
+global selected_size
+global selected_difficulty
 
 BACKGROUND_IMG = pygame.image.load("../monogram-line-seamless-pattern_8830-622 copy.tiff")
 
