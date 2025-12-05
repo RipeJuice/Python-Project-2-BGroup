@@ -79,13 +79,11 @@ def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{int(size)}_{num}")
     return puzzle
 
-#Function to check the board
-def solve_row(self, row_parameter, col_parameter):
+#Function to check the row
+def solve_row(self, row_param, col_param):
+    for index in self[row_param]:
+        print(f"The cell value is {self[row_param][col_param]["value"]}")
 
-    print(f"The current row is {row_parameter}")
 
-    for index in self[row_parameter]:
-
-        print(f"The current column is {col_parameter}")
 
     print(f"The board to check is {self}")
