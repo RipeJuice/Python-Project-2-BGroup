@@ -79,12 +79,7 @@ def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{int(size)}_{num}")
     return puzzle
 
-
-# Function to convert board from array to string
-def convert_array_to_string(board_to_convert):
-    print(f"The board to convert is {board_to_convert}")
-
-
 #Function to check the board
-def solve_puzzle(board_to_check):
-    print(f"The board to check is {board_to_check}")
+def solve_row(self):
+    
+    print(f"The board to check is {self}")
