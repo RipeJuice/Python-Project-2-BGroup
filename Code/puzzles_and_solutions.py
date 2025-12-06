@@ -81,5 +81,7 @@ def grab_puzzle(diff, size, num):
 
 #Function to check the row
 def check_row(row_of_cells: list):
-    for col in row_of_cells:
-        print(f"The cell value is {row_of_cells[col]["value"]}")
+  print(row_of_cells)
+  for cell in row_of_cells:
+      print(cell)
+      print(f"The cell value is {cell['value']}")
