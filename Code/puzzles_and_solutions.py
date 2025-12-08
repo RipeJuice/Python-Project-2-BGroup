@@ -79,7 +79,9 @@ def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{int(size)}_{num}")
     return puzzle
 
-#Function to check the board
-def solve_row(self):
-    
-    print(f"The board to check is {self}")
+#Function to check the row
+def check_row(row_of_cells: list):
+  print(row_of_cells)
+  for cell in row_of_cells:
+      print(cell)
+      print(f"The cell value is {cell['value']}")
