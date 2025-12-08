@@ -2,9 +2,18 @@
 # If you want to access a variable use "from {file name} import {variable}"
 #e.g. "from config import BOARD_SIZE"
 import random
+import pygame
 from bisect import bisect_right
 
+WIDTH = 640
+HEIGHT = 640
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+LIGHT_GRAY = (200, 200, 200)
+PRESSED_GRAY = (210, 210, 210)
 
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 
 # Music files

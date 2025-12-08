@@ -5,7 +5,9 @@
 import pygame
 import sys
 import music
-from view import screen, WIDTH, HEIGHT, WHITE, BLACK, font, font_menu_buttons, LIGHT_GRAY, PRESSED_GRAY
+import config
+from config import screen, WIDTH, HEIGHT
+from config import WHITE, BLACK, LIGHT_GRAY, PRESSED_GRAY
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 global selected_size
 global selected_difficulty
@@ -19,6 +21,9 @@ bg_x2 = WIDTH
 
 # Speed of the scroll (adjust as needed)
 SCROLL_SPEED = 0.1
+
+
+
 
 def draw_scrolling_background():
     global bg_x1, bg_x2 # Declare globals to modify them
@@ -81,11 +86,11 @@ def main_menu():
         pygame.draw.rect(screen, WHITE, title_lines)
         title_lines = pygame.Rect(440, 155, 50, 5)
         pygame.draw.rect(screen, WHITE, title_lines)
-
+        font_size = 40
         pygame.draw.rect(screen, LIGHT_GRAY, size4_btn)
         pygame.draw.rect(screen, LIGHT_GRAY, size9_btn)
-        draw_text("4 x 4", font, BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
-        draw_text("9 x 9", font, BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
+        draw_text("4 x 4", menu_font, BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
+        draw_text("9 x 9", menu_font, BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
         diff_buttons = []
         # Draw difficulty buttons AFTER size is chosen
         if selected_size:
@@ -97,7 +102,7 @@ def main_menu():
                 rect = pygame.Rect(WIDTH//4, HEIGHT//2 + 60 + i*60, WIDTH//2, 50)
                 diff_buttons.append((rect, diff))
                 pygame.draw.rect(screen, LIGHT_GRAY, rect)
-                draw_text(diff.upper(), font, BLACK, screen, WIDTH//2, rect.y + 25)
+                draw_text(diff.upper(), menu_font, BLACK, screen, WIDTH//2, rect.y + 25)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -120,5 +125,6 @@ def main_menu():
                             print(selected_difficulty)
                             print(selected_size)
                             return selected_size, selected_difficulty
+
 
         pygame.display.update()

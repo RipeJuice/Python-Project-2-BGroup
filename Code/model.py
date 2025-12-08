@@ -140,7 +140,6 @@ def main():
     print(current_board)
 
     # current_board is assigned the 2D Array initialized in the function initialize_game_grid
-    current_board = initialize_game_grid(current_board_string, BOARD_SIZE)
     #Creates current board using the function grab_puzzle
     current_board = puzzles_and_solutions.grab_puzzle(f"{difficulty}", f"{BOARD_SIZE}", f"{random_int}")
     #Print statements for debugging

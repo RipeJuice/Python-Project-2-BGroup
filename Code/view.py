@@ -21,7 +21,8 @@ import pygame
 import sys
 from pygame import display, font, event
 from pygame.locals import *
-import config, game_setup
+import game_setup
+from config import screen
 import math
 import random
 
@@ -48,8 +49,8 @@ pygame.init()
 
 WIDTH = 640 # was 540
 HEIGHT = 640 # was 540
-GRID_ROWS = game_setup.selected_size
-GRID_COLS = game_setup.selected_size
+GRID_ROWS = game_setup.main_menu()[0]
+GRID_COLS = game_setup.main_menu()[0]
 CELL_SIZE = WIDTH // GRID_COLS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -63,7 +64,7 @@ TRANSBLUE = (0, 0, 255, 180)
 
 # Display Setup
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
 pygame.display.set_caption(f"Sudoku ULTIMATE")
 
 
