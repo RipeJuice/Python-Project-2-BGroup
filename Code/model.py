@@ -215,7 +215,8 @@ def main():
                                     # Handle main value input
                                     current_board[row][col]["value"] = number_pressed
                                     current_board[row][col]["notes"] = set() # Clears notes
-                                    puzzles_and_solutions.check_row(current_board[row]) # Calls function to check the row
+                                    puzzles_and_solutions.check_row(current_board[row])# Calls function to check the row
+                                    puzzles_and_solutions.check_column(current_board, col)# Calls function to check the column
                             except ValueError:
                                 pass # If user didn't press a valid key
 

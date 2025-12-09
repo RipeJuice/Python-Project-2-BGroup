@@ -89,7 +89,7 @@ def check_row(row_of_cells: list):
     #for loop which iterates through each cell in the row
     for cell in row_of_cells:
 
-      #Sets repeated_number to true if the cell value isn't in the set
+      #Sets repeated_number to true if the cell value is in the set
       if cell['value'] in seen:
           repeated_number = True
       #Otherwise, adds the cell value to the set if it's not 0
@@ -97,4 +97,28 @@ def check_row(row_of_cells: list):
           seen.add(cell['value'])
 
     #Returns repeated_number
+    print(repeated_number)
+
+#Function to check column
+def check_column(current_board, col):
+
+    #Creates the list of values in the column
+    column_of_cells = []
+    for row in current_board:
+        column_of_cells.append(row[col]["value"])
+
+    # Initializes the set and boolean to check the column for repeated numbers
+    seen = set()
+    repeated_number = False
+
+    #for loop which iterates through the cells in the column
+    for cell in column_of_cells:
+
+      #Sets repeated_number to true if the cell value is in the set
+      if cell in seen:
+        repeated_number = True
+
+      #Otherwise, adds the cell value to the set if it's not 0
+      elif cell not in seen and cell != 0:
+          seen.add(cell)
     print(repeated_number)
