@@ -126,6 +126,6 @@ def main_menu():
                             print(selected_size)
                             return selected_size, selected_difficulty
 
-
-
         pygame.display.update()
+
+
