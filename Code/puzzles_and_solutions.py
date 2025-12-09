@@ -22,7 +22,7 @@ puzzles = {
     "medium_size4_8" : "--313---1--4-413",
     "medium_size4_9" : "3---24----3-4-2-",
     "medium_size4_10" : "4--22-4-34------",
-    "hard_size4_1" : "123---21----3--",
+    "hard_size4_1" : "123---21----3---",
     "hard_size4_2" : "---313--3----1--",
     "hard_size4_3" : "---4--1--12-----",
     "hard_size4_4" : "-1----1--32-2-1-",
@@ -81,7 +81,20 @@ def grab_puzzle(diff, size, num):
 
 #Function to check the row
 def check_row(row_of_cells: list):
-  print(row_of_cells)
-  for cell in row_of_cells:
-      print(cell)
-      print(f"The cell value is {cell['value']}")
+
+    #Initializes the set and boolean to check the row for repeated numbers
+    seen = set()
+    repeated_number = False
+
+    #for loop which iterates through each cell in the row
+    for cell in row_of_cells:
+
+      #Sets repeated_number to true if the cell value isn't in the set
+      if cell['value'] in seen:
+          repeated_number = True
+      #Otherwise, adds the cell value to the set if it's not 0
+      elif cell['value'] not in seen and cell['value'] != 0:
+          seen.add(cell['value'])
+
+    #Returns repeated_number
+    print(repeated_number)
