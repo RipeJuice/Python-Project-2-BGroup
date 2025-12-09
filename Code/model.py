@@ -92,7 +92,7 @@ def main():
     #ADDED: Start Menu Logic
     #Calls the main menu function from game_setup.py
     #The loop  only starts if main_menu() returns "start_game"
-    game_setup.main_menu()
+    #game_setup.main_menu()
 
     pygame.mixer.music.set_endevent(SONG_END_EVENT)
 
@@ -141,14 +141,14 @@ def main():
 
     # current_board is assigned the 2D Array initialized in the function initialize_game_grid
     #Creates current board using the function grab_puzzle
-    current_board = puzzles_and_solutions.grab_puzzle(f"{difficulty}", f"{BOARD_SIZE}", f"{random_int}")
+    #current_board = puzzles_and_solutions.grab_puzzle(f"{difficulty}", f"{BOARD_SIZE}", f"{random_int}")
     #Print statements for debugging
     print(f"The difficulty is {difficulty}.")
     print(f"The board size is {BOARD_SIZE}x{BOARD_SIZE}.")
     print(f"The current board is {current_board}.")
 
     #Changes the variable current_board  to the 2D Array created in the function initialize_game_grid
-    current_board_string = initialize_game_grid(current_board, BOARD_SIZE)
+    #current_board_string = initialize_game_grid(current_board, BOARD_SIZE)
 
     # The variable BOARD_SIZE is passed into the GameView class through the parameter size.
     # Also, an attribute of a specific instance of GameView called board_size is assigned the value of the parameter size which is BOARD_SIZE.
