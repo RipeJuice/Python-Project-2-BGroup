@@ -156,6 +156,7 @@ def check_square(board_size, current_board, row, col):
         if col in first_section:
         elif col in middle_section:
         elif col in last_section:
+        
     """
 
     # for loop which iterates through the cells in the square
