@@ -119,7 +119,7 @@ def main():
 
     # --------------------------------
     # --- MENU SELECTION ---
-    BOARD_SIZE, difficulty = game_setup.main_menu() # Connects the return values of selected_size and selected_difficulty to new variables.
+    BOARD_SIZE, difficulty = view.run_main_menu() # Connects the return values of selected_size and selected_difficulty to new variables.
 
     # Store into global config
     import config

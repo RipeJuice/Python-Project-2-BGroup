@@ -78,6 +78,13 @@ font_size = 40
 font = pygame.font.SysFont("Impact", font_size)
 font_menu_buttons = pygame.font.SysFont("Impact", 40)
 
+def run_main_menu():
+    global BOARD_SIZE
+    BOARD_SIZE = game_setup.main_menu()
+    return BOARD_SIZE
+
+
+
 class GameView:
 
     def __init__(self, size):
