@@ -54,6 +54,11 @@ def draw_text(text, font_used, color, surface, x, y):
 
 def main_menu():
     """Displays the main menu and handles user input for game settings."""
+
+    if config.BOARD_SIZE is not None:
+        print(f"DEBUG: Menu already executed. Using config values: Size={config.BOARD_SIZE}, Diff={config.DIFFICULTY}")
+        return config.BOARD_SIZE, config.DIFFICULTY
+
     music.load_music("../Music/background_music_1~Unknown(chill).mp3")
     music.loop_music()
 
@@ -66,6 +71,7 @@ def main_menu():
     # Difficulty pools
     difficulties_all = ["easy", "medium", "hard"]
     difficulties_9x9_only = ["evil"]
+
 
 
     while True:
@@ -124,8 +130,15 @@ def main_menu():
                             selected_difficulty = diff
                             print(selected_difficulty)
                             print(selected_size)
+
+                            config.BOARD_SIZE = selected_size
+                            config.DIFFICULTY = selected_difficulty
+
+                            print(f"Game Settings Selected: Size={config.BOARD_SIZE}, Diff={config.DIFFICULTY}")
                             return selected_size, selected_difficulty
 
         pygame.display.update()
+
+main_menu()
 
 

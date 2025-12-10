@@ -20,6 +20,7 @@ puzzles_and_solutions.py - Contains puzzles and solutions
 
 
 #Imports
+import config
 from Code import controller
 from controller import SudokuInputController
 from Code import game_setup
@@ -119,11 +120,8 @@ def main():
 
     # --------------------------------
     # --- MENU SELECTION ---
-    BOARD_SIZE, difficulty = view.run_main_menu() # Connects the return values of selected_size and selected_difficulty to new variables.
-
-    # Store into global config
-    import config
-    config.BOARD_SIZE = BOARD_SIZE
+    BOARD_SIZE = config.BOARD_SIZE
+    difficulty = config.DIFFICULTY
 
     # --- Load Puzzle ---
     puzzle_index = random.randint(1, 10)

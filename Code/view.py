@@ -5,6 +5,7 @@
 #ALLOWS VNC DISPLAY
 import os
 import tempfile
+import config
 
 #Check if XDG_RUNTIME_DIR is set
 if 'XDG_RUNTIME_DIR' not in os.environ:
@@ -45,6 +46,8 @@ pygame.init()
 
 
     # Dimensions
+BOARD_SIZE = config.BOARD_SIZE
+DIFFICULTY = config.DIFFICULTY
 
 
 WIDTH = 640 # was 540
@@ -78,10 +81,8 @@ font_size = 40
 font = pygame.font.SysFont("Impact", font_size)
 font_menu_buttons = pygame.font.SysFont("Impact", 40)
 
-def run_main_menu():
-    global BOARD_SIZE
-    BOARD_SIZE = game_setup.main_menu()
-    return BOARD_SIZE
+
+
 
 
 
