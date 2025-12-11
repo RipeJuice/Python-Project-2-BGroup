@@ -5,6 +5,7 @@
 #ALLOWS VNC DISPLAY
 import os
 import tempfile
+import config
 
 #Check if XDG_RUNTIME_DIR is set
 if 'XDG_RUNTIME_DIR' not in os.environ:
@@ -45,6 +46,8 @@ pygame.init()
 
 
     # Dimensions
+BOARD_SIZE = config.BOARD_SIZE
+DIFFICULTY = config.DIFFICULTY
 
 
 WIDTH = 640 # was 540
@@ -68,15 +71,20 @@ TRANSBLUE = (0, 0, 255, 180)
 # Display Setup
 
 
-pygame.display.set_caption(f"Sudoku ULTIMATE")
+pygame.display.set_caption(f"Broken Record Sudoku")
 
 
 
 # Fonts
 #font_size = 40 if game_setup.selected_size == 9 else 60
-font_size = 40
+font_size = 40 if BOARD_SIZE == 9 else 60
 font = pygame.font.SysFont("Impact", font_size)
 font_menu_buttons = pygame.font.SysFont("Impact", 40)
+
+
+
+
+
 
 class GameView:
 
@@ -85,8 +93,11 @@ class GameView:
         # Maybe configure globals here or store relevant objects
         import view as v  # Access globals from view if needed
         global font_size
+        x = font_size
+        font_size = 40
         self.note_font_size = int(font_size * 0.4)
         self.note_font = pygame.font.SysFont("Impact", self.note_font_size)
+        font_size = x
 
     def draw_now_playing_popup(self, title, artist):
 

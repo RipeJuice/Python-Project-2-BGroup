@@ -5,12 +5,17 @@ import random
 import pygame
 from bisect import bisect_right
 
+BOARD_SIZE = None
+DIFFICULTY = None
+
 WIDTH = 640
 HEIGHT = 640
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 LIGHT_GRAY = (200, 200, 200)
 PRESSED_GRAY = (210, 210, 210)
+DARK_GRAY = (100, 100, 100)
+TRANSWHITE = (255, 255, 255, 191)
 
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -109,4 +114,3 @@ def get_data(file):
 #song_data = get_data(music_files[num]) # To be used later in model
 #print(song_data) # Test. You can try running just this file if you want to see
 
-BOARD_SIZE = 9
