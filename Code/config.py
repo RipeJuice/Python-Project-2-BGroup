@@ -14,6 +14,8 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 LIGHT_GRAY = (200, 200, 200)
 PRESSED_GRAY = (210, 210, 210)
+DARK_GRAY = (100, 100, 100)
+TRANSWHITE = (255, 255, 255, 191)
 
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))

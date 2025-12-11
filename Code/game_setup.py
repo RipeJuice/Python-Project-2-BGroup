@@ -6,8 +6,10 @@ import pygame
 import sys
 import music
 import config
+import math
+import random
 from config import screen, WIDTH, HEIGHT
-from config import WHITE, BLACK, LIGHT_GRAY, PRESSED_GRAY
+from config import WHITE, BLACK, LIGHT_GRAY, PRESSED_GRAY, DARK_GRAY, TRANSWHITE
 from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 global selected_size
 global selected_difficulty
@@ -22,7 +24,70 @@ bg_x2 = WIDTH
 # Speed of the scroll (adjust as needed)
 SCROLL_SPEED = 0.1
 
+# Constants for bobbing numbers
+AMPLITUDE = 8      # Maximum pixels up/down
+FREQUENCY = 2.5    # Speed of the bobbing (cycles per sec)
 
+message = random.choice(
+    [
+    "50+ puzzles!",
+    "Challenge Yourself!",
+    "Zen Mode Active",
+    "Daily Puzzle Ready",
+    "Infinite Possibilities",
+    "Expertly Crafted",
+    "Can You Beat Evil?",
+    "High Scores Await",
+    "Improve Focus",
+    "Master Logic",
+    "Your Next Move?",
+    "Track Your Stats",
+    "Pure Strategy",
+    "Break the Record",
+    "Time to Play",
+    "Brain Power Up!",
+    "Rethink Everything",
+    "No Guesses Needed",
+    # Pop Culture / Fun References
+    "All Your Base Are Mine",
+    "Gotta Solve 'Em All",
+    "The Matrix Awaits",
+]
+)
+
+# List of animated text elements
+animated_decorations = [
+    # --- LARGE NUMBERS (font_size = 55) ---
+    {
+        'text': message,
+        'font_size': 30,
+        'base_x': WIDTH - (WIDTH // 8) - 80,
+        'base_y': HEIGHT // 8 + 5,
+        'time_offset': 0.0,         # Starts half a cycle later (for smooth opposition)
+        'angle': -25
+    },
+]
+
+
+def draw_transparent_text_and_rotate(text, font_object, color_rgba, surface, x, y, angle):
+    """
+    Renders text with transparency, rotates it by 'angle', and centers
+    the resulting rotated surface at (x, y).
+    """
+
+    # 1. Render the text surface (original size)
+    text_surface = font_object.render(text, True, color_rgba)
+    text_surface.set_alpha(color_rgba[3])  # Apply transparency
+
+    rotated_surface = pygame.transform.rotate(text_surface, angle)
+
+    rotated_rect = rotated_surface.get_rect()
+
+    # Set the center of this new rectangle to the desired position (x, y)
+    rotated_rect.center = (x, y)
+
+    # 4. Blit the rotated, transparent surface
+    surface.blit(rotated_surface, rotated_rect)
 
 
 def draw_scrolling_background():
@@ -80,6 +145,8 @@ def main_menu():
 
 
         # --- SIZE BUTTONS ---
+        font_size = 20
+        draw_text('v0.8.0', pygame.font.SysFont("Arial", font_size), WHITE, screen, WIDTH - (WIDTH // 20), HEIGHT - (HEIGHT // 30))
         size4_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3, WIDTH // 2, 50)
         size9_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3 + 60, WIDTH // 2, 50)
         font_size = 40
@@ -93,22 +160,59 @@ def main_menu():
         title_lines = pygame.Rect(440, 155, 50, 5)
         pygame.draw.rect(screen, WHITE, title_lines)
         font_size = 40
-        pygame.draw.rect(screen, LIGHT_GRAY, size4_btn)
-        pygame.draw.rect(screen, LIGHT_GRAY, size9_btn)
-        draw_text("4 x 4", menu_font, BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
-        draw_text("9 x 9", menu_font, BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
+        pygame.draw.rect(screen, WHITE, size4_btn)
+        pygame.draw.rect(screen, WHITE, size9_btn)
+        pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4, HEIGHT // 3 + 50, WIDTH // 2, 5))
+        pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4, HEIGHT // 3 + 60 + 50, WIDTH // 2, 5))
+        draw_text("4 x 4", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
+        draw_text("9 x 9", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
         diff_buttons = []
+
+
+
+        # BOBBING ANIMATION
+        current_time = pygame.time.get_ticks() / 1000.0
+
+        # DRAW THE ANIMATED DECORATIONS
+        for item in animated_decorations:
+            # Calculate the Y-Offset, incorporating the unique 'time_offset'
+            # item['time_offset'] shifts the phase, making the bobbing asynchronous
+            y_offset = AMPLITUDE * math.sin(FREQUENCY * (current_time + item['time_offset']))
+
+            # Calculate the final animated position
+            animated_y = item['base_y'] + y_offset
+
+            # Create the specific font instance needed for this item
+            # NOTE: Creating fonts inside the loop is slightly inefficient, but simple.
+            # For optimization, create all font objects before the loop.
+            decor_font = pygame.font.SysFont("Impact", item['font_size'])
+
+            # Use the new transparent drawing function
+            draw_transparent_text_and_rotate(
+                item['text'],
+                decor_font,
+                TRANSWHITE,
+                screen,
+                item['base_x'],  # Use base_x
+                animated_y,  # Use the bobbing y-position
+                item['angle']  # Pass the angle here
+            )
+
+
+
         # Draw difficulty buttons AFTER size is chosen
         if selected_size:
 
             diff_buttons = []
             diff_list = difficulties_all + (difficulties_9x9_only if selected_size == 9 else [])
 
+            pygame.draw.rect(screen, WHITE, pygame.Rect(WIDTH // 3, HEIGHT // 3 + 110 + 30, WIDTH // 3, 5))
             for i, diff in enumerate(diff_list):
                 rect = pygame.Rect(WIDTH//4, HEIGHT//2 + 60 + i*60, WIDTH//2, 50)
                 diff_buttons.append((rect, diff))
-                pygame.draw.rect(screen, LIGHT_GRAY, rect)
-                draw_text(diff.upper(), menu_font, BLACK, screen, WIDTH//2, rect.y + 25)
+                pygame.draw.rect(screen, WHITE, rect)
+                pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH//4, HEIGHT//2 + 60 + i*60 + 50, WIDTH//2, 5))
+                draw_text(diff.upper(), pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, rect.y + 25)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -139,6 +243,7 @@ def main_menu():
 
         pygame.display.update()
 
+pygame.init()
 main_menu()
 
 
