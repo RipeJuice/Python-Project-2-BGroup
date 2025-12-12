@@ -217,6 +217,7 @@ def main():
                                     current_board[row][col]["notes"] = set() # Clears notes
                                     puzzles_and_solutions.check_row(current_board[row])# Calls function to check the row
                                     puzzles_and_solutions.check_column(current_board, col)# Calls function to check the column
+                                    puzzles_and_solutions.check_square(BOARD_SIZE, current_board, row, col)#Calls function to check the square
                             except ValueError:
                                 pass # If user didn't press a valid key
 
