@@ -14,7 +14,7 @@ from config import BOARD_SIZE # We will use BOARD_SIZE from config as default
 global selected_size
 global selected_difficulty
 
-BACKGROUND_IMG = pygame.image.load("../monogram-line-seamless-pattern_8830-622 copy.tiff")
+BACKGROUND_IMG = pygame.image.load("../monogram-line-seamless-pattern_8830-622-copy.png")
 
 # Initial position for the first image
 bg_x1 = 0
@@ -171,7 +171,23 @@ def main_menu():
         draw_text("9 x 9", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
         diff_buttons = []
 
+        # Music Icon
+        music_icon = pygame.image.load('../Images/music_icon2.png').convert_alpha()
+        music_icon_rect = music_icon.get_rect()
 
+        music_icon_rect.centerx = WIDTH // 8
+        music_icon_rect.centery = HEIGHT // 8
+
+        screen.blit(music_icon, music_icon_rect)
+
+        # Settings Icon
+        settings_icon = pygame.image.load('../Images/settings--v2.png').convert_alpha()
+        settings_icon_rect = settings_icon.get_rect()
+
+        settings_icon_rect.centerx = WIDTH // 8
+        settings_icon_rect.centery = HEIGHT // 8 + 100
+
+        screen.blit(settings_icon, settings_icon_rect)
 
         # BOBBING ANIMATION
         current_time = pygame.time.get_ticks() / 1000.0
