@@ -175,7 +175,7 @@ def main_menu():
         music_icon = pygame.image.load('../Images/music_icon3.png').convert_alpha()
         music_icon_rect = music_icon.get_rect()
 
-        music_icon_rect.centerx = WIDTH // 8
+        music_icon_rect.centerx = WIDTH // 8 - 20
         music_icon_rect.centery = HEIGHT // 8
 
         screen.blit(music_icon, music_icon_rect)
@@ -184,7 +184,7 @@ def main_menu():
         settings_icon = pygame.image.load('../Images/settings--v2.png').convert_alpha()
         settings_icon_rect = settings_icon.get_rect()
 
-        settings_icon_rect.centerx = WIDTH // 8
+        settings_icon_rect.centerx = WIDTH // 8 - 20
         settings_icon_rect.centery = HEIGHT // 8 + 100
 
         screen.blit(settings_icon, settings_icon_rect)
