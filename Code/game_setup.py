@@ -172,7 +172,7 @@ def main_menu():
         diff_buttons = []
 
         # Music Icon
-        music_icon = pygame.image.load('../Images/music_icon2.png').convert_alpha()
+        music_icon = pygame.image.load('../Images/music_icon3.png').convert_alpha()
         music_icon_rect = music_icon.get_rect()
 
         music_icon_rect.centerx = WIDTH // 8
