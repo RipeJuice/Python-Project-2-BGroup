@@ -34,6 +34,7 @@ import pygame
 import sys
 import colorsys
 import random
+from Code import music
 
 
 
@@ -193,7 +194,8 @@ def main():
                     # note mode is changed to the opposite value or the current value
                     note_mode = not note_mode
                     print(f"Note mode is now {'ON' if note_mode else 'OFF'}") # Testing
-
+                if ev.key == pygame.K_m:
+                    music.toggle_mute()
                 if selected_cell:
                     row, col = selected_cell
                     # Make sure the user can only modify empty cells
