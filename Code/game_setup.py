@@ -147,7 +147,7 @@ def main_menu():
 
         # --- SIZE BUTTONS ---
         font_size = 20
-        draw_text('v0.8.0', pygame.font.SysFont("Arial", font_size), WHITE, screen, WIDTH - (WIDTH // 20), HEIGHT - (HEIGHT // 30))
+        draw_text('v0.8.1', pygame.font.SysFont("Arial", font_size), WHITE, screen, WIDTH - (WIDTH // 20), HEIGHT - (HEIGHT // 30))
         size4_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3, WIDTH // 2, 50)
         size9_btn = pygame.Rect(WIDTH // 4, HEIGHT // 3 + 60, WIDTH // 2, 50)
         font_size = 40
