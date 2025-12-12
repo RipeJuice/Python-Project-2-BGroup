@@ -63,7 +63,7 @@ music_files = [
     "../Music/sleep-meditation~Petrushkasound(relaxing).mp3",
     "../Music/towards-the-sea~White_Records(upbeat).mp3"
 ]
-num = random.randint(0, len(music_files)-1)
+
 
 def get_data(file):
     i = 0

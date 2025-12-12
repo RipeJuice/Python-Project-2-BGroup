@@ -48,6 +48,7 @@ message = random.choice(
     "Brain Power Up!",
     "Rethink Everything",
     "No Guesses Needed",
+    "Chaotically Chaotic...",
     # Pop Culture / Fun References
     "All Your Base Are Mine",
     "Gotta Solve 'Em All",
@@ -160,10 +161,12 @@ def main_menu():
         title_lines = pygame.Rect(440, 155, 50, 5)
         pygame.draw.rect(screen, WHITE, title_lines)
         font_size = 40
+        pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 3 + 5, WIDTH // 2, 50))
+        # pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 2 + 15 + i * 60 + 50, WIDTH // 2, 50))
+        pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 3 + 60 + 5, WIDTH // 2, 50))
         pygame.draw.rect(screen, WHITE, size4_btn)
         pygame.draw.rect(screen, WHITE, size9_btn)
-        pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4, HEIGHT // 3 + 50, WIDTH // 2, 5))
-        pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4, HEIGHT // 3 + 60 + 50, WIDTH // 2, 5))
+
         draw_text("4 x 4", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
         draw_text("9 x 9", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
         diff_buttons = []
@@ -208,10 +211,12 @@ def main_menu():
 
             pygame.draw.rect(screen, WHITE, pygame.Rect(WIDTH // 3, HEIGHT // 3 + 110 + 30, WIDTH // 3, 5))
             for i, diff in enumerate(diff_list):
+                pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 2 + 15 + i * 60 + 50, WIDTH // 2, 50))
                 rect = pygame.Rect(WIDTH//4, HEIGHT//2 + 60 + i*60, WIDTH//2, 50)
                 diff_buttons.append((rect, diff))
                 pygame.draw.rect(screen, WHITE, rect)
-                pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH//4, HEIGHT//2 + 60 + i*60 + 50, WIDTH//2, 5))
+                # move to the right a bit, the same amount away as it is from the bottom of the button
+
                 draw_text(diff.upper(), pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, rect.y + 25)
 
         for event in pygame.event.get():

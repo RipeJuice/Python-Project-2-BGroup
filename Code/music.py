@@ -13,5 +13,5 @@ def load_music(filepath):
 
 #Function to loop the music indefinitely by passing in -1 as a parameter
 def loop_music():
-    pygame.mixer.music.play(-1)
+    pygame.mixer.music.play(loops=0)
     print("music playing")

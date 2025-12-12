@@ -101,6 +101,11 @@ class GameView:
 
     def draw_now_playing_popup(self, title, artist):
 
+        popup_length = 15 + len(title) + 1 + len(artist)
+        dynamic_size = (640) // popup_length
+
+
+        font = pygame.font.SysFont('Arial', dynamic_size)
         BAR_COLOR = (TRANSBLUE)
         TEXT_COLOR = (WHITE)
         bar_height = 40

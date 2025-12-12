@@ -29,7 +29,7 @@ from Code.config import music_files
 from view import GameView
 from Code import puzzles_and_solutions
 from Code import music
-from config import BOARD_SIZE, get_data, num
+from config import BOARD_SIZE, get_data
 import pygame
 import sys
 import colorsys
@@ -99,6 +99,8 @@ def main():
 
     def play_next_song():
         global show_notification, notification_timer, current_song_title, current_artist_name
+
+        num = random.randint(0, len(music_files) - 1)
 
         print(SONG_END_EVENT)
         song_data = get_data(music_files[num])
