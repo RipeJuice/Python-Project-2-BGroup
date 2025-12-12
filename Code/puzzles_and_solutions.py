@@ -122,3 +122,51 @@ def check_column(current_board, col):
       elif cell not in seen and cell != 0:
           seen.add(cell)
     print(repeated_number)
+
+def check_square(board_size, current_board, row, col):
+
+    #Creates the empty list of cells in the square and the empty lists for the sections
+    square_of_cells = []
+    seen = set()
+    repeated_number = False
+    first_section = []
+    middle_section = []
+    last_section = []
+
+    #Calculates the sections of the board based on board_size
+    if board_size == 4:
+        first_section = [1,2]
+        last_section = [3,4]
+    else:
+        first_section = [1,2, 3]
+        middle_section = [4,5, 6]
+        last_section = [7,8, 9]
+
+    #Calculates which section the cell is in board
+    """
+    if row in first_section:
+        if col in first_section:
+        elif col in middle_section:
+        elif col in last_section:
+    elif row in last_section:
+        if col in first_section:
+        elif col in middle_section:
+        elif col in last_section:
+    if row in middle_section:
+        if col in first_section:
+        elif col in middle_section:
+        elif col in last_section:
+        
+    """
+
+    # for loop which iterates through the cells in the square
+    for cell in square_of_cells:
+
+         # Sets repeated_number to true if the cell value is in the set
+        if cell in seen:
+            repeated_number = True
+
+        # Otherwise, adds the cell value to the set if it's not 0
+        elif cell not in seen and cell != 0:
+            seen.add(cell)
+    print(repeated_number)
