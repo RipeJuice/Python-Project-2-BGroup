@@ -139,28 +139,68 @@ def check_square(board_size, current_board, row, col):
     #Calculates the sections of the board based on board_size
     if board_size == 4:
         first_section = [1,2]
-        last_section = [3,4]
+        middle_section = [3, 4]
     else:
-        first_section = [1,2, 3]
-        middle_section = [4,5, 6]
-        last_section = [7,8, 9]
+        first_section = [1, 2, 3]
+        middle_section = [4, 5, 6]
+        last_section = [7, 8, 9]
 
     #Calculates which section the cell is in board
-    """
     if row in first_section:
-        if col in first_section:
-        elif col in middle_section:
-        elif col in last_section:
-    elif row in last_section:
-        if col in first_section:
-        elif col in middle_section:
-        elif col in last_section:
-    if row in middle_section:
-        if col in first_section:
-        elif col in middle_section:
-        elif col in last_section:
-        
-    """
+
+        for i in range(1, int(board_size ** 0.5)):
+
+            if col in first_section:
+                for j in range(1, int(board_size ** 0.5)):
+                    # Appending the correct values to the square_of_cells based on board_size
+                    square_of_cells.append(current_board[i][j]["value"])
+
+            elif col in middle_section:
+                for j in range(int(board_size ** 0.5) + 1, 2 * int(board_size ** 0.5)):
+                    # Appending the correct values to the square_of_cells based on board_size
+                    square_of_cells.append(current_board[i][j]["value"])
+
+            elif col in last_section:
+                for j in range(2 * int(board_size ** 0.5) + 1, 3 * int(board_size ** 0.5)):
+                    # Appending the correct values to the square_of_cells based on board_size
+                    square_of_cells.append(current_board[i][j]["value"])
+
+    elif row in middle_section:
+        for i in range(int(board_size ** 0.5) + 1, 2 * int(board_size ** 0.5)):
+            for i in range(1, int(board_size ** 0.5)):
+
+                if col in first_section:
+                    for j in range(1, int(board_size ** 0.5)):
+                        # Appending the correct values to the square_of_cells based on board_size
+                        square_of_cells.append(current_board[i][j]["value"])
+
+                elif col in middle_section:
+                    for j in range(int(board_size ** 0.5) + 1, 2 * int(board_size ** 0.5)):
+                        # Appending the correct values to the square_of_cells based on board_size
+                        square_of_cells.append(current_board[i][j]["value"])
+
+                elif col in last_section:
+                    for j in range(2 * int(board_size ** 0.5) + 1, 3 * int(board_size ** 0.5)):
+                        # Appending the correct values to the square_of_cells based on board_size
+                        square_of_cells.append(current_board[i][j]["value"])
+    if row in last_section:
+        for i in range(2 * int(board_size ** 0.5) + 1, 3 * int(board_size ** 0.5)):
+            for i in range(1, int(board_size ** 0.5)):
+
+                if col in first_section:
+                    for j in range(1, int(board_size ** 0.5)):
+                        # Appending the correct values to the square_of_cells based on board_size
+                        square_of_cells.append(current_board[i][j]["value"])
+
+                elif col in middle_section:
+                    for j in range(int(board_size ** 0.5) + 1, 2 * int(board_size ** 0.5)):
+                        # Appending the correct values to the square_of_cells based on board_size
+                        square_of_cells.append(current_board[i][j]["value"])
+
+                elif col in last_section:
+                    for j in range(2 * int(board_size ** 0.5) + 1, 3 * int(board_size ** 0.5)):
+                        # Appending the correct values to the square_of_cells based on board_size
+                        square_of_cells.append(current_board[i][j]["value"])
 
     # for loop which iterates through the cells in the square
     for cell in square_of_cells:
