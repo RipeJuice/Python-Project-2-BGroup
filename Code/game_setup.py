@@ -250,7 +250,7 @@ def main_menu():
 
                 if size9_btn.collidepoint(event.pos):
                     selected_size = 9
-
+                """
                 if music_icon_rect.collidepoint(event.pos):
                     music_open = True
 
@@ -258,8 +258,8 @@ def main_menu():
                     settings_open = True
 
                 if music_open:
-
-
+                    pass
+                """
                 # DIFFICULTY
                 if selected_size:
                     for rect, diff in diff_buttons:
