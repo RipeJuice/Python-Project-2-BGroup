@@ -1,4 +1,6 @@
 #Contains the empty puzzles
+import config
+
 
 #4x4 puzzles
 puzzles = {
@@ -77,6 +79,7 @@ puzzles = {
 #Function to print the selected puzzle
 def grab_puzzle(diff, size, num):
     puzzle = puzzles.get(f"{diff}_size{int(size)}_{num}")
+    config.BOARD = puzzle
     return puzzle
 
 #Function to check the row

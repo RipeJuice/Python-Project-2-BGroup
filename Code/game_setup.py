@@ -162,7 +162,6 @@ def main_menu():
         pygame.draw.rect(screen, WHITE, title_lines)
         font_size = 40
         pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 3 + 5, WIDTH // 2, 50))
-        # pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 2 + 15 + i * 60 + 50, WIDTH // 2, 50))
         pygame.draw.rect(screen, DARK_GRAY, pygame.Rect(WIDTH // 4 + 5, HEIGHT // 3 + 60 + 5, WIDTH // 2, 50))
         pygame.draw.rect(screen, WHITE, size4_btn)
         pygame.draw.rect(screen, WHITE, size9_btn)
@@ -170,6 +169,10 @@ def main_menu():
         draw_text("4 x 4", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 25)
         draw_text("9 x 9", pygame.font.SysFont("Impact", 55), BLACK, screen, WIDTH//2, HEIGHT//3 + 85)
         diff_buttons = []
+
+        # Music Page
+        page = pygame.Rect(WIDTH // 2, HEIGHT // 2, WIDTH * 0.7, HEIGHT * 0.7)
+
 
         # Music Icon
         music_icon = pygame.image.load('../Images/music_icon3.png').convert_alpha()
@@ -247,6 +250,15 @@ def main_menu():
 
                 if size9_btn.collidepoint(event.pos):
                     selected_size = 9
+
+                if music_icon_rect.collidepoint(event.pos):
+                    music_open = True
+
+                if settings_icon_rect.collidepoint(event.pos):
+                    settings_open = True
+
+                if music_open:
+
 
                 # DIFFICULTY
                 if selected_size:

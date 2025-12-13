@@ -8,6 +8,8 @@ from bisect import bisect_right
 BOARD_SIZE = None
 DIFFICULTY = None
 
+BOARD = None
+
 WIDTH = 640
 HEIGHT = 640
 WHITE = (255, 255, 255)
